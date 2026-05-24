@@ -13,8 +13,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Pós-Graduação em RT e Consultoria de Alimentos — Food Smart" },
       {
         property: "og:description",
-        content:
-          "Entre para a lista de espera da Pós-Graduação reconhecida pelo MEC da Food Smart.",
+        content: "Entre para a lista de espera da Pós-Graduação reconhecida pelo MEC da Food Smart.",
       },
     ],
     links: [
@@ -50,29 +49,18 @@ function Index() {
             Pós-Graduação reconhecida pelo MEC
           </span>
 
-          <h1
-            className="text-4xl leading-tight sm:text-5xl lg:text-6xl"
-            style={{ fontWeight: 900, color: "#FFFFFF" }}
-          >
-            Pós-Graduação em RT e{" "}
-            <span style={{ color: "#EE3C30" }}>Consultoria de Alimentos</span>
+          <h1 className="text-4xl leading-tight sm:text-5xl lg:text-6xl" style={{ fontWeight: 900, color: "#FFFFFF" }}>
+            Pós-Graduação em RT e <span style={{ color: "#EE3C30" }}>Consultoria de Alimentos</span>
           </h1>
 
-          <p
-            className="text-lg sm:text-xl"
-            style={{ fontWeight: 400, color: "#FFFFFF" }}
-          >
-            Transforme conhecimento técnico em uma carreira sólida, valorizada e
-            com possibilidades reais de crescimento no mercado de alimentos.
+          <p className="text-lg sm:text-xl" style={{ fontWeight: 400, color: "#FFFFFF" }}>
+            Transforme conhecimento técnico em uma carreira sólida, valorizada e com possibilidades reais de crescimento
+            no mercado de alimentos.
           </p>
 
-          <p
-            className="text-sm sm:text-base"
-            style={{ color: "#FFFFFF", opacity: 0.75 }}
-          >
-            Uma pós-graduação reconhecida pelo MEC, criada para profissionais
-            que desejam atuar com mais segurança, autoridade e visão prática na
-            área de Responsabilidade Técnica e Consultoria de Alimentos.
+          <p className="text-sm sm:text-base" style={{ color: "#FFFFFF", opacity: 0.75 }}>
+            Uma pós-graduação reconhecida pelo MEC, criada para profissionais que desejam atuar com mais segurança,
+            autoridade e visão prática na área de Responsabilidade Técnica e Consultoria de Alimentos.
           </p>
 
           <a
@@ -84,7 +72,7 @@ function Index() {
               fontWeight: 700,
             }}
           >
-            Entrar para a lista de espera
+            Fazer minha Pré-Inscrição
           </a>
         </div>
 
