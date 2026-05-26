@@ -833,8 +833,8 @@ function Index() {
             Certificado <span style={{ color: COLORS.red }}>reconhecido pelo MEC</span>
           </h2>
           <p className="mt-6 text-base sm:text-lg" data-reveal>
-            A Pós-Graduação em RT & Consultoria de Alimentos é certificada pela Faculdade Unypublica — instituição
-            credenciada pelo Ministério da Educação conforme Portaria nº 615/2021. Um certificado de especialista que
+            A Pós-Graduação em RT & Consultoria de Alimentos é certificada pela <strong>Faculdade Unypublica</strong> — instituição
+            credenciada pelo Ministério da Educação conforme <strong>Portaria nº 615/2021</strong>. Um certificado de especialista que
             você pode apresentar com autoridade no mercado.
           </p>
           <div
