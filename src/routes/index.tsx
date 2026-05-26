@@ -1072,13 +1072,13 @@ function Index() {
             <span className="block">Faça sua</span>
             <span className="block">Pré-inscrição!</span>
           </h2>
-          <p className="mt-6 text-base sm:text-lg" data-reveal>
+          <p className="mt-6 text-base sm:text-lg" style={{ color: "#FFFFFF" }} data-reveal>
             Receba em{" "}
-            <span style={{ color: "#BFF60C", fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>primeira mão</span>{" "}
+            <span style={{ fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>primeira mão</span>{" "}
             as informações sobre a{" "}
-            <span style={{ color: "#2DD2E3", fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>próxima turma</span>{" "}
+            <span style={{ fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>próxima turma</span>{" "}
             da{" "}
-            <span style={{ color: "#EE3C30", fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>
+            <span style={{ fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>
               Pós-Graduação em RT e Consultoria de Alimentos
             </span>
             .
