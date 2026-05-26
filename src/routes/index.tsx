@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
-import paulaImg from "@/assets/paula.png";
+import heroBg from "@/assets/hero-bg.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -139,13 +139,16 @@ function Index() {
       <section
         className="relative w-full overflow-hidden"
         style={{
-          background: `radial-gradient(ellipse at bottom left, ${COLORS.bgAlt} 0%, ${COLORS.bg} 60%)`,
+          backgroundColor: COLORS.bg,
+          backgroundImage: `url(${heroBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center right",
+          backgroundRepeat: "no-repeat",
           minHeight: "100vh",
         }}
       >
-        <Glow color={COLORS.cyan} className="-top-32 -left-32" opacity={0.1} />
-        <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center gap-10 px-6 py-10 sm:px-10 sm:py-14 lg:flex-row lg:items-end lg:gap-12 lg:py-0">
-          <div className="order-2 flex w-full flex-col items-start gap-6 lg:order-1 lg:w-1/2 lg:py-20" data-reveal>
+        <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col items-start gap-10 px-6 py-10 sm:px-10 sm:py-14 lg:flex-row lg:items-center lg:gap-12">
+          <div className="flex w-full flex-col items-start gap-6 lg:w-1/2 lg:py-20" data-reveal>
             <span
               className="inline-block rounded-full border px-4 py-1.5 text-xs font-medium sm:text-sm"
               style={{ borderColor: COLORS.cyan, color: COLORS.cyan, backgroundColor: "transparent" }}
@@ -165,13 +168,6 @@ function Index() {
               autoridade e visão prática na área de Responsabilidade Técnica e Consultoria de Alimentos.
             </p>
             <CTAButton>Entrar para a lista de espera</CTAButton>
-          </div>
-          <div className="order-1 flex w-full justify-center self-end lg:order-2 lg:h-screen lg:w-1/2 lg:justify-end" data-reveal>
-            <img
-              src={paulaImg}
-              alt="Paula Eloize, professora da Pós-Graduação em RT e Consultoria de Alimentos da Food Smart"
-              className="block h-auto max-h-[55vh] w-auto object-contain object-bottom lg:max-h-screen lg:h-full"
-            />
           </div>
         </div>
       </section>
