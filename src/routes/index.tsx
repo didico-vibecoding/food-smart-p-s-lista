@@ -549,7 +549,7 @@ function Index() {
     >
       <TopNav />
       {/* 1. HERO */}
-      <section className="relative w-full overflow-hidden" style={{ backgroundColor: COLORS.bg, minHeight: "100vh" }}>
+      <section className="relative w-full overflow-hidden" style={{ backgroundColor: COLORS.bg, minHeight: "100vh", borderTop: `3px solid ${COLORS.lime}` }}>
         {/* Camadas de atmosfera */}
         <div
           aria-hidden
@@ -632,7 +632,8 @@ function Index() {
 
 
       {/* 2. INSTITUCIONAL */}
-      <section style={{ backgroundColor: COLORS.bgAlt }} className="px-6 py-20 sm:px-10 sm:py-24">
+      <section style={{ backgroundColor: COLORS.bgAlt, borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-20 sm:px-10 sm:py-24">
+
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Somos o <span style={{ color: COLORS.red }}>maior ecossistema</span> da área de alimentos
@@ -673,7 +674,7 @@ function Index() {
       </section>
 
       {/* 3. TRANSFORMAÇÃO */}
-      <section id="a-pos" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem", borderTop: `3px solid ${COLORS.cyan}` }} className="px-6 py-20 sm:px-10 sm:py-24">
+      <section id="a-pos" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem", borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-20 sm:px-10 sm:py-24">
 
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
@@ -691,7 +692,8 @@ function Index() {
       </section>
 
       {/* 4. CARREIRA */}
-      <section style={{ backgroundColor: COLORS.bgAlt }} className="px-6 py-20 sm:px-10 sm:py-24">
+      <section style={{ backgroundColor: COLORS.bgAlt, borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-20 sm:px-10 sm:py-24">
+
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Um mercado que <span style={{ color: COLORS.red }}>continua crescendo</span> e buscando profissionais
@@ -757,7 +759,7 @@ function Index() {
 
 
       {/* 5. MÓDULOS */}
-      <section id="modulos" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem" }} className="px-6 py-20 sm:px-10 sm:py-24">
+      <section id="modulos" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem", borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Conheça a estrutura da formação
@@ -798,7 +800,8 @@ function Index() {
       </section>
 
       {/* 6. DIFERENCIAIS */}
-      <section style={{ backgroundColor: COLORS.bgAlt }} className="px-6 py-20 sm:px-10 sm:py-24">
+      <section style={{ backgroundColor: COLORS.bgAlt, borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-20 sm:px-10 sm:py-24">
+
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             O que torna essa formação <span style={{ color: COLORS.red }}>diferente</span>
@@ -823,7 +826,7 @@ function Index() {
       </section>
 
       {/* 7. CERTIFICAÇÃO */}
-      <section id="certificacao" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem" }} className="px-6 py-20 sm:px-10 sm:py-24">
+      <section id="certificacao" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem", borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <div className="flex justify-center" data-reveal>
             <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke={COLORS.lime} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -850,7 +853,7 @@ function Index() {
       </section>
 
       {/* 8. PROVA SOCIAL */}
-      <section style={{ backgroundColor: COLORS.bgAlt }} className="px-6 py-20 sm:px-10 sm:py-24">
+      <section style={{ backgroundColor: COLORS.bgAlt, borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Profissionais de diferentes regiões do Brasil já fazem parte dessa formação
@@ -880,7 +883,7 @@ function Index() {
       </section>
 
       {/* 9. CORPO DOCENTE */}
-      <section style={{ backgroundColor: COLORS.bg }} className="px-6 py-20 sm:px-10 sm:py-24">
+      <section style={{ backgroundColor: COLORS.bg, borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Uma formação construída por quem conhece o mercado
@@ -914,7 +917,7 @@ function Index() {
       {/* 10. CTA FINAL */}
       <section
         id="pre-inscricao"
-        style={{ backgroundColor: COLORS.bg, borderTop: `4px solid ${COLORS.lime}`, scrollMarginTop: "5rem" }}
+        style={{ backgroundColor: COLORS.bg, borderTop: `3px solid ${COLORS.lime}`, scrollMarginTop: "5rem" }}
         className="px-6 py-20 sm:px-10 sm:py-24"
       >
         <div className="mx-auto max-w-3xl text-center">
@@ -932,7 +935,7 @@ function Index() {
       </section>
 
       {/* RODAPÉ */}
-      <footer style={{ backgroundColor: COLORS.bgDarker }} className="px-6 py-12 text-center sm:px-10">
+      <footer style={{ backgroundColor: COLORS.bgDarker, borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-12 text-center sm:px-10">
         <div className="mx-auto max-w-4xl">
           <div className="text-2xl" style={{ fontWeight: 900, color: COLORS.lime }}>
             Food Smart
