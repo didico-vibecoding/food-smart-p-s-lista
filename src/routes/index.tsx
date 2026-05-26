@@ -619,7 +619,12 @@ function TeachersCarousel() {
                   style={{ backgroundColor: COLORS.bg, border: `2px solid ${COLORS.cyan}` }}
                 >
                   {t.photo && (
-                    <img src={t.photo} alt={t.name} className="h-full w-full object-cover" />
+                    <img
+                      src={t.photo}
+                      alt={t.name}
+                      className="h-full w-full object-cover"
+                      style={{ transform: "scale(1.45)", transformOrigin: "50% 28%" }}
+                    />
                   )}
                 </div>
                 <div className="mt-4 text-base" style={{ fontFamily: "Poppins, sans-serif", fontWeight: 700, color: COLORS.text }}>
