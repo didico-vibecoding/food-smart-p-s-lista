@@ -152,7 +152,10 @@ function Index() {
             </span>
             <h1 className="text-4xl leading-tight sm:text-5xl lg:text-6xl" style={{ fontWeight: 900 }}>
               Pós-Graduação em RT e<br />
-              <span style={{ color: COLORS.red }}>Consultoria de Alimentos</span>
+              <span style={{ color: COLORS.red, filter: "drop-shadow(0 0 25px rgba(238,60,48,0.4))" }}>
+                Consultoria de Alimentos
+              </span>
+
             </h1>
             <p className="text-lg sm:text-xl" style={{ fontWeight: 400 }}>
               Transforme conhecimento técnico em uma carreira sólida, valorizada e com possibilidades reais de
