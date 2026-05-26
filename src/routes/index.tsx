@@ -111,10 +111,10 @@ function Index() {
     >
       {/* 1. HERO */}
       <section className="relative w-full overflow-hidden" style={{ backgroundColor: COLORS.bg, minHeight: "100vh" }}>
-        <div className="mx-auto grid min-h-screen w-full max-w-7xl grid-cols-1 items-stretch gap-10 px-6 py-10 sm:px-10 sm:py-14 md:grid-cols-12 md:gap-10 lg:gap-14 lg:py-0">
-          {/* Texto - esquerda no desktop, embaixo no mobile */}
+        <div className="mx-auto grid min-h-screen w-full max-w-7xl grid-cols-1 items-center gap-10 px-6 py-10 sm:px-10 sm:py-14 md:grid-cols-12 md:gap-10 lg:gap-14 lg:py-20">
+          {/* Texto - esquerda no desktop, topo no mobile */}
           <div
-            className="order-2 flex flex-col justify-center gap-6 text-left md:order-1 md:col-span-7 lg:py-20"
+            className="order-1 flex flex-col justify-center gap-6 text-left md:col-span-7"
             data-reveal
           >
             <span
@@ -137,13 +137,13 @@ function Index() {
             </p>
           </div>
 
-          {/* Foto da Paula - direita no desktop, em cima no mobile, com CTA logo abaixo */}
-          <div className="order-1 flex flex-col items-center md:order-2 md:col-span-5" data-reveal>
-            <div className="flex w-full flex-1 items-end justify-center">
+          {/* Foto da Paula - direita no desktop, abaixo do texto no mobile, com CTA logo abaixo */}
+          <div className="order-2 flex flex-col items-center justify-center md:col-span-5" data-reveal>
+            <div className="flex w-full justify-center">
               <img
                 src={paulaImg}
                 alt="Paula Eloize, professora da Pós-Graduação em RT e Consultoria de Alimentos da Food Smart"
-                className="mb-0 block h-full w-auto max-w-full object-contain object-bottom drop-shadow-2xl max-h-[520px] lg:max-h-[640px]"
+                className="mb-0 block h-auto w-auto max-w-full object-contain drop-shadow-2xl max-h-[480px] lg:max-h-[560px]"
                 loading="eager"
               />
             </div>
@@ -152,6 +152,7 @@ function Index() {
             </div>
           </div>
         </div>
+
       </section>
 
 
