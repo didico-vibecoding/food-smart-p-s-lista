@@ -144,20 +144,18 @@ function CountUp({ end, color, prefix = "", suffix = "" }: { end: number; color:
   );
 }
 
-function ImpactCard({ end, prefix, suffix, label, color, delay }: { end: number; prefix?: string; suffix?: string; label: string; color: string; delay: number }) {
+function useFadeIn(delay: number) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     el.style.opacity = "0";
-    el.style.transform = "translateY(28px)";
-    el.style.transition = `opacity 700ms ease-out ${delay}ms, transform 700ms ease-out ${delay}ms`;
+    el.style.transition = `opacity 600ms ease-out ${delay}ms`;
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
             el.style.opacity = "1";
-            el.style.transform = "translateY(0)";
             io.unobserve(el);
           }
         });
@@ -167,10 +165,15 @@ function ImpactCard({ end, prefix, suffix, label, color, delay }: { end: number;
     io.observe(el);
     return () => io.disconnect();
   }, [delay]);
+  return ref;
+}
+
+function ImpactCard({ end, prefix, suffix, label, color, delay }: { end: number; prefix?: string; suffix?: string; label: string; color: string; delay: number }) {
+  const ref = useFadeIn(delay);
   return (
     <div
       ref={ref}
-      className="rounded-2xl p-8 sm:p-10 text-center"
+      className="w-full rounded-2xl px-8 py-10 sm:px-12 sm:py-12 text-center"
       style={{ backgroundColor: COLORS.bgAlt }}
     >
       <CountUp end={end} prefix={prefix} suffix={suffix} color={color} />
@@ -182,39 +185,18 @@ function ImpactCard({ end, prefix, suffix, label, color, delay }: { end: number;
 }
 
 function RevenueCard({ delay }: { delay: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    el.style.opacity = "0";
-    el.style.transform = "translateY(28px)";
-    el.style.transition = `opacity 700ms ease-out ${delay}ms, transform 700ms ease-out ${delay}ms`;
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            el.style.opacity = "1";
-            el.style.transform = "translateY(0)";
-            io.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.2 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [delay]);
+  const ref = useFadeIn(delay);
   return (
     <div
       ref={ref}
-      className="mt-6 rounded-2xl p-8 sm:p-12 text-center"
-      style={{ backgroundColor: COLORS.bg, border: `2px solid ${COLORS.lime}` }}
+      className="w-full rounded-2xl px-8 py-10 sm:px-12 sm:py-12 text-center"
+      style={{ backgroundColor: COLORS.bgAlt, border: `2px solid ${COLORS.lime}` }}
     >
       <p className="text-base sm:text-lg" style={{ color: COLORS.text }}>
         Alunos faturando de
       </p>
       <p
-        className="my-3 text-5xl sm:text-6xl lg:text-7xl leading-none"
+        className="my-3 text-6xl sm:text-7xl lg:text-8xl leading-none"
         style={{ color: COLORS.cyan, fontWeight: 900 }}
       >
         R$ 10k a R$ 40k
@@ -227,7 +209,6 @@ function RevenueCard({ delay }: { delay: number }) {
 }
 
 function ImpactStats() {
-
   const cards = [
     { end: 5000, prefix: "+", label: "Alunos transformados", color: COLORS.cyan },
     { end: 200, prefix: "+", label: "Clientes atendidos", color: COLORS.lime },
@@ -246,7 +227,7 @@ function ImpactStats() {
         Nosso impacto em números
       </h3>
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto mt-12 flex w-full max-w-[800px] flex-col gap-6">
         {cards.map((c, i) => (
           <ImpactCard
             key={c.label}
@@ -254,13 +235,11 @@ function ImpactStats() {
             prefix={c.prefix}
             label={c.label}
             color={c.color}
-            delay={i * 100}
+            delay={i * 150}
           />
         ))}
+        <RevenueCard delay={cards.length * 150} />
       </div>
-
-      <RevenueCard delay={cards.length * 100} />
-
     </div>
   );
 }
