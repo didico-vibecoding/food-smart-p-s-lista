@@ -168,8 +168,14 @@ function Index() {
           </div>
 
           {/* Foto da Paula - direita no desktop, abaixo do texto no mobile, com CTA logo abaixo */}
-          <div className="order-2 flex flex-col items-center justify-center md:col-span-5" data-reveal>
-            <div className="flex w-full justify-center">
+          <div className="relative order-2 flex flex-col items-center justify-center md:col-span-5" data-reveal>
+            <div
+              aria-hidden
+              className="pointer-events-none absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full blur-[90px]"
+              style={{ backgroundColor: "rgba(191,246,12,0.10)" }}
+            />
+            <div className="relative flex w-full justify-center">
+
               <img
                 src={paulaImg}
                 alt="Paula Eloize, professora da Pós-Graduação em RT e Consultoria de Alimentos da Food Smart"
