@@ -417,9 +417,9 @@ function JourneyTimeline() {
             >
               <span
                 aria-hidden
-                className="absolute rounded-full"
+                className="absolute left-[-27px] sm:left-[-31px] rounded-full"
                 style={{
-                  left: `calc(${isLast ? "1rem" : "0.75rem"} - ${size / 2}px + 1px)`,
+                  marginLeft: -size / 2,
                   width: size,
                   height: size,
                   backgroundColor: isActive ? COLORS.lime : "rgba(191,246,12,0.25)",
