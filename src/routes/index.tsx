@@ -702,11 +702,6 @@ function Index() {
           </div>
 
           <div className="mt-12 space-y-5 text-base sm:text-lg" data-reveal>
-            <p>
-              Empresas de alimentos precisam atender exigências sanitárias cada vez mais rigorosas. Indústrias,
-              supermercados, restaurantes, açougues, padarias e diversos estabelecimentos dependem de profissionais
-              capacitados para atuar com segurança técnica e orientação estratégica.
-            </p>
             <p>Isso faz da RT e Consultoria de Alimentos uma área com amplo espaço para atuação profissional.</p>
             <p>
               A pós-graduação foi desenvolvida para preparar profissionais que desejam construir autoridade e ampliar
