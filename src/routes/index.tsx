@@ -539,6 +539,119 @@ function NewsCarousel() {
   );
 }
 
+type Teacher = { name: string; role?: string; photo?: string | null };
+
+const TEACHERS: Teacher[] = [
+  { name: "Professor(a)", role: "", photo: null },
+  { name: "Professor(a)", role: "", photo: null },
+  { name: "Professor(a)", role: "", photo: null },
+  { name: "Professor(a)", role: "", photo: null },
+];
+
+function TeachersCarousel() {
+  const [perPage, setPerPage] = useState(4);
+  const [index, setIndex] = useState(0);
+  const touchStart = useRef<number | null>(null);
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      setPerPage(w < 768 ? 1 : w < 1024 ? 2 : 4);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const maxIndex = Math.max(0, TEACHERS.length - perPage);
+
+  useEffect(() => {
+    setIndex((i) => Math.min(i, maxIndex));
+  }, [maxIndex]);
+
+  useEffect(() => {
+    if (maxIndex === 0) return;
+    const id = setInterval(() => {
+      setIndex((i) => (i >= maxIndex ? 0 : i + 1));
+    }, 3000);
+    return () => clearInterval(id);
+  }, [maxIndex]);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStart.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart.current == null) return;
+    const dx = e.changedTouches[0].clientX - touchStart.current;
+    if (Math.abs(dx) > 40) {
+      setIndex((i) => {
+        const next = dx < 0 ? i + 1 : i - 1;
+        return Math.max(0, Math.min(maxIndex, next));
+      });
+    }
+    touchStart.current = null;
+  };
+
+  return (
+    <div data-reveal>
+      <div
+        className="overflow-hidden"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
+        <div
+          className="flex transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${index * (100 / perPage)}%)` }}
+        >
+          {TEACHERS.map((t, i) => (
+            <div
+              key={i}
+              className="shrink-0 px-3"
+              style={{ width: `${100 / perPage}%` }}
+            >
+              <div
+                className="rounded-2xl p-6 text-center"
+                style={{ backgroundColor: COLORS.bgAlt }}
+              >
+                <div
+                  className="mx-auto h-24 w-24 overflow-hidden rounded-full"
+                  style={{ backgroundColor: COLORS.bg, border: `2px solid ${COLORS.cyan}` }}
+                >
+                  {t.photo && (
+                    <img src={t.photo} alt={t.name} className="h-full w-full object-cover" />
+                  )}
+                </div>
+                <div className="mt-4 text-base" style={{ fontFamily: "Poppins, sans-serif", fontWeight: 700, color: COLORS.text }}>
+                  {t.name}
+                </div>
+                {t.role ? (
+                  <div className="mt-1 text-sm" style={{ fontFamily: "Poppins, sans-serif", fontWeight: 400, color: COLORS.cyan }}>
+                    {t.role}
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="mt-6 flex justify-center gap-2">
+        {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => setIndex(i)}
+            aria-label={`Ir para slide ${i + 1}`}
+            className="h-2.5 w-2.5 rounded-full transition-colors"
+            style={{ backgroundColor: index === i ? COLORS.lime : COLORS.bgAlt }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+
 
 function Index() {
   const rootRef = useReveal();
