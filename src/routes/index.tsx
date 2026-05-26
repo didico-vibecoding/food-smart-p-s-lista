@@ -7,6 +7,7 @@ import logoConsultoria from "@/assets/logo-consultoria.png";
 import logoVerifica from "@/assets/logo-verifica.png";
 import logoUnypublica from "@/assets/logo-unypublica.png";
 import qrCodeEmec from "@/assets/qr-code-emec.png";
+import alunaAlice from "@/assets/aluna-alice.jpeg";
 import { TopNav } from "@/components/TopNav";
 import newsPoder360 from "@/assets/news-poder360.png";
 import newsExame from "@/assets/news-exame.png";
@@ -539,6 +540,7 @@ function NewsCarousel() {
 
 function Index() {
   const rootRef = useReveal();
+  const [openTestimonial, setOpenTestimonial] = useState<number | null>(null);
 
   return (
     <div
@@ -851,25 +853,58 @@ function Index() {
             Profissionais de diferentes regiões do Brasil já fazem parte dessa formação
           </h2>
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="rounded-2xl p-6 text-center"
-                style={{ backgroundColor: COLORS.bg, borderTop: `4px solid ${COLORS.cyan}` }}
-                data-reveal
-              >
-                <div
-                  className="mx-auto h-20 w-20 rounded-full"
-                  style={{ backgroundColor: COLORS.bgAlt, border: `2px solid ${COLORS.cyan}` }}
-                />
-                <div className="mt-4 text-base" style={{ fontWeight: 700 }}>
-                  Nome do Aluno
-                </div>
-                <p className="mt-3 text-sm" style={{ opacity: 0.8 }}>
-                  Depoimento em breve
-                </p>
-              </div>
-            ))}
+            {[
+              {
+                name: "Alice",
+                photo: alunaAlice,
+                quote:
+                  "O diferencial desse método é que ele vai além da base teórica, ensinando não apenas o conhecimento técnico, mas também como se posicionar e se portar profissionalmente. Os módulos abordam aspectos como posicionamento nas redes sociais, postura diante do cliente e elaboração de contratos. Esses ensinamentos se tornaram o grande diferencial para mim.",
+              },
+              { name: "Nome do Aluno", photo: null, quote: "Depoimento em breve" },
+              { name: "Nome do Aluno", photo: null, quote: "Depoimento em breve" },
+            ].map((t, idx) => {
+              const isOpen = openTestimonial === idx;
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => setOpenTestimonial(isOpen ? null : idx)}
+                  className="relative rounded-2xl p-6 transition-all duration-300 cursor-pointer text-left"
+                  style={{ backgroundColor: COLORS.bg, borderTop: `4px solid ${COLORS.cyan}`, color: COLORS.text }}
+                  data-reveal
+                >
+                  <div
+                    className="mx-auto h-20 w-20 overflow-hidden rounded-full"
+                    style={{ backgroundColor: COLORS.bgAlt, border: `2px solid ${COLORS.cyan}` }}
+                  >
+                    {t.photo && (
+                      <img src={t.photo} alt={t.name} className="h-full w-full object-cover" />
+                    )}
+                  </div>
+                  <div className="mt-4 text-center text-base" style={{ fontWeight: 700 }}>
+                    {t.name}
+                  </div>
+                  <div
+                    className="grid overflow-hidden transition-all duration-300 ease-out"
+                    style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
+                  >
+                    <p
+                      className="min-h-0 text-center text-sm"
+                      style={{ fontFamily: "Poppins, sans-serif", fontWeight: 400, opacity: 0.9, paddingTop: isOpen ? "0.75rem" : 0 }}
+                    >
+                      {t.quote}
+                    </p>
+                  </div>
+                  <span
+                    className="absolute bottom-3 right-4 text-2xl leading-none"
+                    style={{ color: COLORS.lime, fontWeight: 700 }}
+                    aria-hidden="true"
+                  >
+                    {isOpen ? "−" : "+"}
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
