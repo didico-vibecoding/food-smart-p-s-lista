@@ -91,11 +91,12 @@ function CTAButton({ children, className = "" }: { children: React.ReactNode; cl
   );
 }
 
-function Check() {
+function Check({ color }: { color?: string }) {
+  const c = color ?? COLORS.lime;
   return (
     <span
       className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
-      style={{ backgroundColor: "rgba(191,246,12,0.12)", color: COLORS.lime }}
+      style={{ backgroundColor: `${c}1F`, color: c }}
       aria-hidden
     >
       ✔
@@ -423,7 +424,8 @@ function Index() {
       </section>
 
       {/* 3. TRANSFORMAÇÃO */}
-      <section id="a-pos" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem" }} className="px-6 py-20 sm:px-10 sm:py-24">
+      <section id="a-pos" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem", borderTop: `3px solid ${COLORS.cyan}` }} className="px-6 py-20 sm:px-10 sm:py-24">
+
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Mais do que uma pós-graduação.
@@ -434,24 +436,35 @@ function Index() {
             Ao longo da formação, você terá acesso a conteúdos que ajudam não apenas na parte técnica, mas também na
             construção da sua atuação profissional.
           </p>
-          <ul className="mt-10 grid gap-4 md:grid-cols-2">
-            {[
-              "Responsabilidade Técnica na prática",
-              "Consultoria para empresas de alimentos",
-              "Legislação e órgãos fiscalizadores",
-              "Boas Práticas de Fabricação",
-              "Auditorias e visitas técnicas",
-              "Rotulagem e registro de produtos",
-              "Indústria, supermercados e serviços de alimentação",
-              "Precificação, contratos e posicionamento profissional",
-              "Estratégias para conquistar clientes e fortalecer sua autoridade",
-            ].map((i) => (
-              <li key={i} className="flex items-start gap-3 text-base sm:text-lg" data-reveal>
-                <Check />
-                <span>{i}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-10 grid gap-x-8 gap-y-4 md:grid-cols-2">
+            <ul className="flex flex-col gap-4">
+              {[
+                "Responsabilidade Técnica na prática",
+                "Legislação e órgãos fiscalizadores",
+                "Auditorias e visitas técnicas",
+                "Indústria, supermercados e serviços de alimentação",
+                "Estratégias para conquistar clientes e fortalecer sua autoridade",
+              ].map((i) => (
+                <li key={i} className="flex items-start gap-3 text-base sm:text-lg" data-reveal>
+                  <Check color={COLORS.cyan} />
+                  <span>{i}</span>
+                </li>
+              ))}
+            </ul>
+            <ul className="flex flex-col gap-4">
+              {[
+                "Consultoria para empresas de alimentos",
+                "Boas Práticas de Fabricação",
+                "Rotulagem e registro de produtos",
+                "Precificação, contratos e posicionamento profissional",
+              ].map((i) => (
+                <li key={i} className="flex items-start gap-3 text-base sm:text-lg" data-reveal>
+                  <Check color={COLORS.cyan} />
+                  <span>{i}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
