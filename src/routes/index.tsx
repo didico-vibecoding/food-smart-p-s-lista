@@ -285,6 +285,135 @@ function ImpactStats() {
 }
 
 
+const JOURNEY_ITEMS = [
+  "Responsabilidade Técnica na prática",
+  "Consultoria para empresas de alimentos",
+  "Legislação e órgãos fiscalizadores",
+  "Boas Práticas de Fabricação",
+  "Auditorias e visitas técnicas",
+  "Rotulagem e registro de produtos",
+  "Indústria, supermercados e serviços de alimentação",
+  "Precificação, contratos e posicionamento profissional",
+  "Estratégias para conquistar clientes e fortalecer sua autoridade",
+];
+
+function JourneyTimeline() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [lineHeight, setLineHeight] = useState(0);
+  const [visible, setVisible] = useState<boolean[]>(() => JOURNEY_ITEMS.map(() => false));
+  const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const el = containerRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const total = rect.height;
+      const start = rect.top - vh * 0.85;
+      const end = rect.top + total - vh * 0.5;
+      const range = end - start;
+      const p = Math.min(1, Math.max(0, -start / range));
+      setLineHeight(p * 100);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const observers: IntersectionObserver[] = [];
+    itemRefs.current.forEach((node, idx) => {
+      if (!node) return;
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              setTimeout(() => {
+                setVisible((prev) => {
+                  if (prev[idx]) return prev;
+                  const next = [...prev];
+                  next[idx] = true;
+                  return next;
+                });
+              }, idx * 150);
+              io.disconnect();
+            }
+          });
+        },
+        { threshold: 0.3 },
+      );
+      io.observe(node);
+      observers.push(io);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
+  return (
+    <div ref={containerRef} className="relative mx-auto mt-10 w-full max-w-[700px] pl-10 sm:pl-12">
+      <div
+        aria-hidden
+        className="absolute left-3 sm:left-4 top-2 bottom-2 w-[2px]"
+        style={{ backgroundColor: "rgba(45,210,227,0.15)" }}
+      />
+      <div
+        aria-hidden
+        className="absolute left-3 sm:left-4 top-2 w-[2px]"
+        style={{
+          backgroundColor: COLORS.cyan,
+          height: `calc(${lineHeight}% - 4px)`,
+          maxHeight: "calc(100% - 4px)",
+          transition: "height 120ms linear",
+        }}
+      />
+      <ul className="flex flex-col" style={{ gap: 40 }}>
+        {JOURNEY_ITEMS.map((text, idx) => {
+          const isLast = idx === JOURNEY_ITEMS.length - 1;
+          const size = isLast ? 20 : 12;
+          return (
+            <li
+              key={text}
+              ref={(el) => {
+                itemRefs.current[idx] = el;
+              }}
+              className="relative flex items-center"
+              style={{
+                opacity: visible[idx] ? 1 : 0,
+                transform: visible[idx] ? "translateX(0)" : "translateX(-16px)",
+                transition: "opacity 600ms ease-out, transform 600ms ease-out",
+              }}
+            >
+              <span
+                aria-hidden
+                className="absolute rounded-full"
+                style={{
+                  left: `calc(${isLast ? "1rem" : "0.75rem"} - ${size / 2}px + 1px)`,
+                  width: size,
+                  height: size,
+                  backgroundColor: COLORS.lime,
+                  boxShadow: isLast
+                    ? "0 0 0 4px rgba(191,246,12,0.25), 0 0 16px rgba(191,246,12,0.55)"
+                    : undefined,
+                }}
+              />
+              <span
+                className="text-base sm:text-lg"
+                style={{ color: isLast ? COLORS.lime : "#FFFFFF", fontWeight: isLast ? 600 : 400 }}
+              >
+                {text}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
 
 function Index() {
   const rootRef = useReveal();
@@ -436,35 +565,8 @@ function Index() {
             Ao longo da formação, você terá acesso a conteúdos que ajudam não apenas na parte técnica, mas também na
             construção da sua atuação profissional.
           </p>
-          <div className="mt-10 grid gap-x-8 gap-y-4 md:grid-cols-2">
-            <ul className="flex flex-col gap-4">
-              {[
-                "Responsabilidade Técnica na prática",
-                "Legislação e órgãos fiscalizadores",
-                "Auditorias e visitas técnicas",
-                "Indústria, supermercados e serviços de alimentação",
-                "Estratégias para conquistar clientes e fortalecer sua autoridade",
-              ].map((i) => (
-                <li key={i} className="flex items-start gap-3 text-base sm:text-lg" data-reveal>
-                  <Check color={COLORS.lime} />
-                  <span>{i}</span>
-                </li>
-              ))}
-            </ul>
-            <ul className="flex flex-col gap-4">
-              {[
-                "Consultoria para empresas de alimentos",
-                "Boas Práticas de Fabricação",
-                "Rotulagem e registro de produtos",
-                "Precificação, contratos e posicionamento profissional",
-              ].map((i) => (
-                <li key={i} className="flex items-start gap-3 text-base sm:text-lg" data-reveal>
-                  <Check color={COLORS.lime} />
-                  <span>{i}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <JourneyTimeline />
+
         </div>
       </section>
 
