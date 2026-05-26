@@ -136,7 +136,14 @@ function Index() {
       }}
     >
       {/* 1. HERO */}
-      <section className="relative w-full overflow-hidden" style={{ backgroundColor: COLORS.bg, minHeight: "100vh" }}>
+      <section
+        className="relative w-full overflow-hidden"
+        style={{
+          background: `radial-gradient(ellipse at bottom left, ${COLORS.bgAlt} 0%, ${COLORS.bg} 60%)`,
+          minHeight: "100vh",
+        }}
+      >
+        <Glow color={COLORS.cyan} className="-top-32 -left-32" opacity={0.1} />
         <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center gap-10 px-6 py-10 sm:px-10 sm:py-14 lg:flex-row lg:items-end lg:gap-12 lg:py-0">
           <div className="order-2 flex w-full flex-col items-start gap-6 lg:order-1 lg:w-1/2 lg:py-20" data-reveal>
             <span
