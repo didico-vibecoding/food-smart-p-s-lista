@@ -1049,10 +1049,12 @@ function Index() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Uma formação construída por quem conhece o mercado
           </h2>
-          <p className="mt-6 text-base sm:text-lg" data-reveal>
-            O corpo docente reúne profissionais com experiência prática em indústria, consultoria, responsabilidade
-            técnica, auditorias, segurança dos alimentos e atuação estratégica no setor alimentício. Uma formação
-            construída por quem conhece os desafios reais do mercado.
+          <p className="mt-6 text-base sm:text-lg" style={{ color: "#FFFFFF" }} data-reveal>
+            O corpo docente reúne profissionais com{" "}
+            <span style={{ fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>experiência prática</span>{" "}
+            em indústria, consultoria, responsabilidade técnica, auditorias, segurança dos alimentos e atuação
+            estratégica no setor alimentício. Uma formação construída por quem conhece os{" "}
+            <span style={{ fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>desafios reais do mercado</span>.
           </p>
           <div className="mt-10">
             <TeachersCarousel />
