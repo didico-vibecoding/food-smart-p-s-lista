@@ -103,7 +103,54 @@ function Check() {
   );
 }
 
+function FadeInCard({
+  delay,
+  className = "",
+  style,
+  children,
+}: {
+  delay: number;
+  className?: string;
+  style?: React.CSSProperties;
+  children: React.ReactNode;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.opacity = "0";
+    el.style.transition = `opacity 600ms ease-out ${delay}ms`;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            el.style.opacity = "1";
+            io.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [delay]);
+  return (
+    <div ref={ref} className={className} style={style}>
+      {children}
+    </div>
+  );
+}
+
 function ImpactStats() {
+  const cards = [
+    { Icon: GraduationCap, value: "+5.000", label: "Alunos transformados", color: COLORS.cyan },
+    { Icon: Handshake, value: "+200", label: "Clientes atendidos", color: COLORS.lime },
+    { Icon: Trophy, value: "8", label: "Anos de operação", color: COLORS.red },
+    { Icon: Globe, value: "4", label: "Países alcançados", color: COLORS.lime },
+    { Icon: Users, value: "14", label: "Profissões diferentes na comunidade", color: COLORS.cyan },
+    { Icon: BookOpen, value: "31", label: "Cursos gratuitos já entregues", color: COLORS.lime },
+  ];
+
   return (
     <div className="mt-20">
       <h3
@@ -114,15 +161,51 @@ function ImpactStats() {
         Nosso impacto em números
       </h3>
 
-      <div className="mx-auto mt-12 w-full max-w-5xl">
-        <img
-          src={impactoNumeros}
-          alt="Nosso impacto em números: +5.000 alunos transformados, +200 clientes atendidos, 31 cursos gratuitos, 4 países alcançados, 14 profissões na comunidade, 8 anos de operação, alunos faturando de R$ 10k a R$ 40k por mês"
-          loading="lazy"
-          width={1536}
-          height={1024}
-          className="w-full h-auto rounded-2xl"
-        />
+      <div className="mx-auto mt-12 w-full max-w-[1200px]">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {cards.map((c, i) => (
+            <FadeInCard
+              key={c.label}
+              delay={i * 100}
+              className="rounded-2xl px-6 py-10 sm:px-8 sm:py-12 text-center flex flex-col items-center"
+              style={{ backgroundColor: COLORS.bgAlt }}
+            >
+              <c.Icon size={48} strokeWidth={1.5} color={c.color} aria-hidden />
+              <span
+                className="mt-5 block text-5xl sm:text-6xl leading-none"
+                style={{ color: c.color, fontWeight: 900 }}
+              >
+                {c.value}
+              </span>
+              <p
+                className="mt-4 text-base sm:text-lg"
+                style={{ color: COLORS.text }}
+              >
+                {c.label}
+              </p>
+            </FadeInCard>
+          ))}
+        </div>
+
+        <FadeInCard
+          delay={cards.length * 100}
+          className="mt-4 rounded-2xl px-6 py-10 sm:px-8 sm:py-12 text-center flex flex-col items-center"
+          style={{ backgroundColor: COLORS.bg, border: `2px solid ${COLORS.lime}` }}
+        >
+          <TrendingUp size={56} strokeWidth={1.5} color={COLORS.cyan} aria-hidden />
+          <p className="mt-5 text-base sm:text-lg" style={{ color: COLORS.text }}>
+            Alunos faturando de
+          </p>
+          <p
+            className="my-3 text-6xl sm:text-7xl lg:text-8xl leading-none"
+            style={{ color: COLORS.cyan, fontWeight: 900 }}
+          >
+            R$ 10k a R$ 40k
+          </p>
+          <p className="text-base sm:text-lg" style={{ color: COLORS.text }}>
+            por mês
+          </p>
+        </FadeInCard>
       </div>
     </div>
   );
