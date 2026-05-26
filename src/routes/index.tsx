@@ -826,7 +826,7 @@ function Index() {
       </section>
 
       {/* 7. CERTIFICAÇÃO */}
-      <section id="certificacao" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem" }} className="px-6 py-20 sm:px-10 sm:py-24">
+      <section id="certificacao" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem", borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <div className="flex justify-center" data-reveal>
             <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke={COLORS.lime} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
