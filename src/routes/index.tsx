@@ -468,6 +468,88 @@ function JourneyTimeline() {
   );
 }
 
+const NEWS_IMAGES = [
+  { src: newsPoder360, alt: "Poder360 - Por que a indústria de alimentos não para de contratar" },
+  { src: newsExame, alt: "Exame - Brasil amplia liderança no agronegócio global" },
+  { src: newsFolha, alt: "Folha de S.Paulo - Commodities fortalecem indústria e Brasil vira supermercado do mundo" },
+  { src: newsGloboRural, alt: "Globo Rural - A importância do médico-veterinário e do zootecnista" },
+  { src: newsFiesc, alt: "FIESC - Setor alimentício liderou crescimento na produção industrial" },
+  { src: newsValor, alt: "Valor Econômico - Indústria de alimentos fatura mais de R$ 1 trilhão em 2022" },
+  { src: newsPegn, alt: "Pequenas Empresas & Grandes Negócios - Faturamento cresceu 16,6% em 2022" },
+];
+
+function NewsCarousel() {
+  const [index, setIndex] = useState(0);
+  const total = NEWS_IMAGES.length;
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+
+  useEffect(() => {
+    const id = setInterval(() => setIndex((i) => (i + 1) % total), 4000);
+    return () => clearInterval(id);
+  }, [total]);
+
+  const go = (i: number) => setIndex(((i % total) + total) % total);
+
+  return (
+    <div className="relative mx-auto w-full max-w-4xl">
+      <div
+        className="relative overflow-hidden rounded-2xl"
+        style={{ backgroundColor: COLORS.bg, aspectRatio: "1138 / 760" }}
+        onTouchStart={(e) => setTouchStart(e.touches[0].clientX)}
+        onTouchEnd={(e) => {
+          if (touchStart === null) return;
+          const diff = touchStart - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) go(index + (diff > 0 ? 1 : -1));
+          setTouchStart(null);
+        }}
+      >
+        {NEWS_IMAGES.map((img, i) => (
+          <img
+            key={img.src}
+            src={img.src}
+            alt={img.alt}
+            className="absolute inset-0 h-full w-full object-contain transition-opacity duration-700"
+            style={{ opacity: i === index ? 1 : 0 }}
+            loading={i === 0 ? "eager" : "lazy"}
+          />
+        ))}
+      </div>
+
+      <button
+        type="button"
+        aria-label="Anterior"
+        onClick={() => go(index - 1)}
+        className="absolute left-2 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full sm:left-4 sm:h-12 sm:w-12"
+        style={{ backgroundColor: "#252A45" }}
+      >
+        <ChevronLeft style={{ color: "#BFF60C" }} />
+      </button>
+      <button
+        type="button"
+        aria-label="Próximo"
+        onClick={() => go(index + 1)}
+        className="absolute right-2 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full sm:right-4 sm:h-12 sm:w-12"
+        style={{ backgroundColor: "#252A45" }}
+      >
+        <ChevronRight style={{ color: "#BFF60C" }} />
+      </button>
+
+      <div className="mt-6 flex justify-center gap-2">
+        {NEWS_IMAGES.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Ir para slide ${i + 1}`}
+            onClick={() => go(i)}
+            className="h-2.5 w-2.5 rounded-full transition-colors"
+            style={{ backgroundColor: i === index ? "#BFF60C" : "#252A45" }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
 function Index() {
   const rootRef = useReveal();
