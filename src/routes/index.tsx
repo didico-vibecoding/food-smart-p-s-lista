@@ -94,10 +94,10 @@ function useReveal() {
   return ref;
 }
 
-function CTAButton({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+function CTAButton({ children, className = "", href }: { children: React.ReactNode; className?: string; href?: string }) {
   return (
     <a
-      href={WAITLIST_URL}
+      href={href ?? WAITLIST_URL}
       target="_blank"
       rel="noopener noreferrer"
       className={`inline-block rounded-full px-8 py-4 text-base sm:text-lg shadow-lg transition-transform hover:scale-[1.03] ${className}`}
@@ -933,7 +933,7 @@ function Index() {
             ))}
           </div>
           <div className="mt-12 flex justify-center" data-reveal>
-            <CTAButton>Fazer minha Pré-Inscrição</CTAButton>
+            <CTAButton href="https://api.whatsapp.com/send?phone=5541995896140&text=Ol%C3%A1%2C%20quero%20saber%20se%20a%20P%C3%B3s%20%C3%A9%20para%20mim">Fazer minha Pré-Inscrição</CTAButton>
           </div>
         </div>
       </section>
