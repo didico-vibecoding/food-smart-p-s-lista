@@ -200,10 +200,10 @@ function Index() {
             Somos o <span style={{ color: COLORS.red }}>maior ecossistema</span> da área de alimentos
           </h2>
           <p className="mt-6 text-base sm:text-lg" data-reveal>
-            A Food Smart não é apenas uma empresa. Somos um movimento. Um ecossistema criado para transformar a
-            Segurança dos Alimentos no Brasil, formar os profissionais que estarão à frente dessa revolução e capacitar
-            negócios para liderar o mercado com excelência. Acreditamos que a segurança dos alimentos não é um detalhe
-            – é a base de um mercado mais forte, de consumidores protegidos e de profissionais preparados para liderar.
+            A Food Smart é um ecossistema criado para transformar a Segurança dos Alimentos no Brasil, formar os
+            profissionais que estarão à frente dessa revolução e capacitar negócios para liderar o mercado com
+            excelência. Acreditamos que a segurança dos alimentos é a base de um mercado mais forte, de consumidores
+            protegidos e de profissionais preparados para liderar.
           </p>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
