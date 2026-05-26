@@ -863,7 +863,7 @@ function Index() {
               className="flex flex-1 items-center justify-center bg-white"
               style={{ borderRadius: "16px", padding: "24px", height: "180px", boxShadow: "0 20px 60px -10px rgba(45,210,227,0.35)" }}
             >
-              <img src={logoUnypublica} alt="Faculdade Unypública" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto" }} />
+              <img src={logoUnypublica} alt="Faculdade Unypublica" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto" }} />
             </div>
           </div>
         </div>
