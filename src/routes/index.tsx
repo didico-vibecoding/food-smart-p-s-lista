@@ -1069,7 +1069,7 @@ function Index() {
       >
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
-            Entre para a lista de espera
+            Faça sua Pré-inscrição!
           </h2>
           <p className="mt-6 text-base sm:text-lg" data-reveal>
             Receba em primeira mão as informações sobre a próxima turma da Pós-Graduação em RT e Consultoria de
