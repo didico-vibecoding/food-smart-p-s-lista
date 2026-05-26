@@ -935,7 +935,7 @@ function Index() {
       </section>
 
       {/* RODAPÉ */}
-      <footer style={{ backgroundColor: COLORS.bgDarker }} className="px-6 py-12 text-center sm:px-10">
+      <footer style={{ backgroundColor: COLORS.bgDarker, borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-12 text-center sm:px-10">
         <div className="mx-auto max-w-4xl">
           <div className="text-2xl" style={{ fontWeight: 900, color: COLORS.lime }}>
             Food Smart
