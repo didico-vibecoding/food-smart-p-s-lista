@@ -111,10 +111,14 @@ function Index() {
     >
       {/* 1. HERO */}
       <section className="relative w-full overflow-hidden" style={{ backgroundColor: COLORS.bg, minHeight: "100vh" }}>
-        <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center gap-10 px-6 py-10 sm:px-10 sm:py-14 lg:flex-row lg:items-end lg:gap-12 lg:py-0">
-          <div className="order-2 flex w-full flex-col items-start gap-6 lg:order-1 lg:w-1/2 lg:py-20" data-reveal>
+        <div className="mx-auto grid min-h-screen w-full max-w-7xl grid-cols-1 items-stretch gap-10 px-6 py-10 sm:px-10 sm:py-14 md:grid-cols-12 md:gap-10 lg:gap-14 lg:py-0">
+          {/* Texto - esquerda no desktop, embaixo no mobile */}
+          <div
+            className="order-2 flex flex-col justify-center gap-6 text-left md:order-1 md:col-span-7 lg:py-20"
+            data-reveal
+          >
             <span
-              className="inline-block rounded-full border px-4 py-1.5 text-xs font-medium sm:text-sm"
+              className="inline-block self-start rounded-full border px-4 py-1.5 text-xs font-medium sm:text-sm"
               style={{ borderColor: COLORS.cyan, color: COLORS.cyan, backgroundColor: "transparent" }}
             >
               Pós-Graduação reconhecida pelo MEC
@@ -131,17 +135,25 @@ function Index() {
               Uma pós-graduação reconhecida pelo MEC, criada para profissionais que desejam atuar com mais segurança,
               autoridade e visão prática na área de Responsabilidade Técnica e Consultoria de Alimentos.
             </p>
-            <CTAButton>Entrar para a lista de espera</CTAButton>
           </div>
-          <div className="order-1 flex w-full justify-center self-end lg:order-2 lg:h-screen lg:w-1/2 lg:justify-end" data-reveal>
-            <img
-              src={paulaImg}
-              alt="Paula Eloize, professora da Pós-Graduação em RT e Consultoria de Alimentos da Food Smart"
-              className="block h-auto max-h-[55vh] w-auto object-contain object-bottom lg:max-h-screen lg:h-full"
-            />
+
+          {/* Foto da Paula - direita no desktop, em cima no mobile, com CTA logo abaixo */}
+          <div className="order-1 flex flex-col items-center md:order-2 md:col-span-5" data-reveal>
+            <div className="flex w-full flex-1 items-end justify-center">
+              <img
+                src={paulaImg}
+                alt="Paula Eloize, professora da Pós-Graduação em RT e Consultoria de Alimentos da Food Smart"
+                className="mb-0 block h-full w-auto max-w-full object-contain object-bottom drop-shadow-2xl max-h-[520px] lg:max-h-[640px]"
+                loading="eager"
+              />
+            </div>
+            <div className="flex w-full justify-center">
+              <CTAButton>Entrar para a lista de espera</CTAButton>
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* 2. INSTITUCIONAL */}
       <section style={{ backgroundColor: COLORS.bgAlt }} className="px-6 py-20 sm:px-10 sm:py-24">
