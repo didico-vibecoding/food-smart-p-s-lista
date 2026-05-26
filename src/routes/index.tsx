@@ -147,22 +147,12 @@ function ImpactStats() {
     { value: "+200", label: "Clientes atendidos" },
     { value: "8", label: "Anos de operação" },
     { value: "4", label: "Países alcançados" },
-    { value: "14", label: "Profissões diferentes na comunidade" },
-    { value: "31", label: "Cursos gratuitos já entregues" },
   ];
 
   return (
     <div className="mt-20">
-      <h3
-        className="text-center text-3xl sm:text-4xl lg:text-5xl"
-        style={{ color: COLORS.text, fontWeight: 900 }}
-        data-reveal
-      >
-        Nosso impacto em números
-      </h3>
-
-      <div className="mx-auto mt-12 w-full max-w-[1200px]">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <div className="mx-auto w-full max-w-[1200px]">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {cards.map((c, i) => (
             <FadeInCard
               key={c.label}
