@@ -5,6 +5,7 @@ import logoFoodSmart from "@/assets/logo-food-smart.png";
 import logoAcademy from "@/assets/logo-academy.png";
 import logoConsultoria from "@/assets/logo-consultoria.png";
 import logoVerifica from "@/assets/logo-verifica.png";
+import impactoNumeros from "@/assets/impacto-numeros.png";
 import { TopNav } from "@/components/TopNav";
 
 export const Route = createFileRoute("/")({
