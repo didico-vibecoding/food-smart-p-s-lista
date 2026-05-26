@@ -622,8 +622,8 @@ function TeachersCarousel() {
                     <img
                       src={t.photo}
                       alt={t.name}
-                      className="h-full w-full object-cover"
-                      style={{ transform: "scale(1.45)", transformOrigin: "50% 28%" }}
+                      className="h-full w-full"
+                      style={{ objectFit: "cover", objectPosition: "top center" }}
                     />
                   )}
                 </div>
