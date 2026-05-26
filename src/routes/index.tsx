@@ -853,7 +853,7 @@ function Index() {
       </section>
 
       {/* 8. PROVA SOCIAL */}
-      <section style={{ backgroundColor: COLORS.bgAlt }} className="px-6 py-20 sm:px-10 sm:py-24">
+      <section style={{ backgroundColor: COLORS.bgAlt, borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Profissionais de diferentes regiões do Brasil já fazem parte dessa formação
