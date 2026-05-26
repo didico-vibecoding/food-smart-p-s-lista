@@ -111,7 +111,34 @@ function Index() {
     >
       {/* 1. HERO */}
       <section className="relative w-full overflow-hidden" style={{ backgroundColor: COLORS.bg, minHeight: "100vh" }}>
-        <div className="mx-auto grid min-h-screen w-full max-w-7xl grid-cols-1 items-center gap-10 px-6 py-10 sm:px-10 sm:py-14 md:grid-cols-12 md:gap-10 lg:gap-14 lg:py-20">
+        {/* Camadas de atmosfera */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-[5%] -top-[10%] h-[500px] w-[500px] animate-pulse rounded-full blur-[120px]"
+          style={{ backgroundColor: "rgba(45,210,227,0.15)" }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute bottom-[5%] right-[10%] h-[400px] w-[400px] rounded-full blur-[150px]"
+          style={{ backgroundColor: "rgba(238,60,48,0.10)" }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            opacity: 0.03,
+            backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
+          }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{ backgroundImage: `linear-gradient(to bottom, transparent, ${COLORS.bg})` }}
+        />
+
+        <div className="relative z-10 mx-auto grid min-h-screen w-full max-w-7xl grid-cols-1 items-center gap-10 px-6 py-10 sm:px-10 sm:py-14 md:grid-cols-12 md:gap-10 lg:gap-14 lg:py-20">
+
           {/* Texto - esquerda no desktop, topo no mobile */}
           <div
             className="order-1 flex flex-col justify-center gap-6 text-left md:col-span-7"
