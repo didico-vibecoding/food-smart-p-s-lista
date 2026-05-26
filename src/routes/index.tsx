@@ -854,9 +854,9 @@ function Index() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center bg-white"
-                style={{ borderRadius: "16px", padding: "12px", boxShadow: "0 20px 60px -10px rgba(45,210,227,0.35)" }}
+                style={{ borderRadius: "16px", padding: "16px", height: "180px", width: "180px", boxShadow: "0 20px 60px -10px rgba(45,210,227,0.35)" }}
               >
-                <img src={qrCodeEmec} alt="QR Code e-MEC" style={{ width: "128px", height: "128px", display: "block" }} />
+                <img src={qrCodeEmec} alt="QR Code e-MEC" style={{ width: "100%", height: "100%", display: "block" }} />
               </a>
               <span
                 className="mt-3"
@@ -867,9 +867,9 @@ function Index() {
             </div>
             <div
               className="flex flex-1 items-center justify-center bg-white"
-              style={{ borderRadius: "16px", padding: "24px", minHeight: "152px", boxShadow: "0 20px 60px -10px rgba(45,210,227,0.35)" }}
+              style={{ borderRadius: "16px", padding: "24px", height: "180px", boxShadow: "0 20px 60px -10px rgba(45,210,227,0.35)" }}
             >
-              <img src={logoUnypublica} alt="Faculdade Unypública" style={{ maxWidth: "100%", maxHeight: "80px", width: "auto", height: "auto" }} />
+              <img src={logoUnypublica} alt="Faculdade Unypública" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto" }} />
             </div>
           </div>
         </div>
