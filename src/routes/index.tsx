@@ -11,6 +11,7 @@ import alunaAlice from "@/assets/aluna-alice.jpeg";
 import alunaLivia from "@/assets/aluna-livia.png";
 import alunaLunearane from "@/assets/aluna-lunearane.jpg";
 import professoraPaulaEloize from "@/assets/professora-paula-eloize.png";
+import professorGregoriFagundes from "@/assets/professor-gregori-fagundes.png";
 import { TopNav } from "@/components/TopNav";
 import newsPoder360 from "@/assets/news-poder360.png";
 import newsExame from "@/assets/news-exame.png";
@@ -544,7 +545,7 @@ type Teacher = { name: string; role?: string; photo?: string | null };
 
 const TEACHERS: Teacher[] = [
   { name: "Paula Eloize", role: "", photo: professoraPaulaEloize },
-  { name: "Professor(a)", role: "", photo: null },
+  { name: "Grégori Fagundes", role: "", photo: professorGregoriFagundes },
   { name: "Professor(a)", role: "", photo: null },
   { name: "Professor(a)", role: "", photo: null },
 ];
