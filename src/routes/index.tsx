@@ -844,29 +844,33 @@ function Index() {
             você pode apresentar com autoridade no mercado.
           </p>
           <div
-            className="mt-8 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-10"
+            className="mx-auto mt-8 flex flex-col items-center justify-center gap-6 sm:flex-row sm:items-stretch sm:gap-8"
+            style={{ maxWidth: "600px" }}
             data-reveal
           >
-            <img
-              src={logoUnypublica}
-              alt="Faculdade Unypública"
-              style={{ height: "60px", width: "auto" }}
-            />
-            <a
-              href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/MjI2NjA=/93916316abe23148507bd4c260e4b878/MzMxOTQ3"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center gap-2"
-            >
-              <img
-                src={qrCodeEmec}
-                alt="QR Code e-MEC"
-                style={{ width: "100px", height: "100px" }}
-              />
-              <span style={{ color: COLORS.cyan, fontFamily: "Poppins, sans-serif", fontWeight: 400, fontSize: "0.875rem" }}>
-                Verifique no e-Mec
+            <div className="flex flex-col items-center">
+              <a
+                href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/MjI2NjA=/93916316abe23148507bd4c260e4b878/MzMxOTQ3"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center bg-white"
+                style={{ borderRadius: "16px", padding: "20px" }}
+              >
+                <img src={qrCodeEmec} alt="QR Code e-MEC" style={{ width: "140px", height: "140px", display: "block" }} />
+              </a>
+              <span
+                className="mt-3"
+                style={{ color: COLORS.cyan, fontFamily: "Poppins, sans-serif", fontWeight: 400, fontSize: "0.875rem" }}
+              >
+                Verifique no e-MEC
               </span>
-            </a>
+            </div>
+            <div
+              className="flex flex-1 items-center justify-center bg-white"
+              style={{ borderRadius: "16px", padding: "24px", minHeight: "180px" }}
+            >
+              <img src={logoUnypublica} alt="Faculdade Unypública" style={{ maxWidth: "100%", maxHeight: "100px", width: "auto", height: "auto" }} />
+            </div>
           </div>
         </div>
       </section>
