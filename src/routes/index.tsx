@@ -102,6 +102,171 @@ function Check() {
   );
 }
 
+function CountUp({ end, color, prefix = "", suffix = "" }: { end: number; color: string; prefix?: string; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let started = false;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && !started) {
+            started = true;
+            const duration = 1600;
+            const start = performance.now();
+            const step = (now: number) => {
+              const p = Math.min((now - start) / duration, 1);
+              const eased = 1 - Math.pow(1 - p, 3);
+              const v = Math.floor(eased * end);
+              el.textContent = `${prefix}${v.toLocaleString("pt-BR")}${suffix}`;
+              if (p < 1) requestAnimationFrame(step);
+              else el.textContent = `${prefix}${end.toLocaleString("pt-BR")}${suffix}`;
+            };
+            requestAnimationFrame(step);
+            io.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.4 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [end, prefix, suffix]);
+  return (
+    <span
+      ref={ref}
+      style={{ color, fontWeight: 900 }}
+      className="block text-5xl sm:text-6xl lg:text-7xl leading-none"
+    >
+      {prefix}0{suffix}
+    </span>
+  );
+}
+
+function ImpactCard({ end, prefix, suffix, label, color, delay }: { end: number; prefix?: string; suffix?: string; label: string; color: string; delay: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.opacity = "0";
+    el.style.transform = "translateY(28px)";
+    el.style.transition = `opacity 700ms ease-out ${delay}ms, transform 700ms ease-out ${delay}ms`;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+            io.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [delay]);
+  return (
+    <div
+      ref={ref}
+      className="rounded-2xl p-8 sm:p-10 text-center"
+      style={{ backgroundColor: COLORS.bgAlt }}
+    >
+      <CountUp end={end} prefix={prefix} suffix={suffix} color={color} />
+      <p className="mt-4 text-base sm:text-lg" style={{ color: COLORS.text }}>
+        {label}
+      </p>
+    </div>
+  );
+}
+
+function RevenueCard({ delay }: { delay: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.opacity = "0";
+    el.style.transform = "translateY(28px)";
+    el.style.transition = `opacity 700ms ease-out ${delay}ms, transform 700ms ease-out ${delay}ms`;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+            io.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [delay]);
+  return (
+    <div
+      ref={ref}
+      className="mt-6 rounded-2xl p-8 sm:p-12 text-center"
+      style={{ backgroundColor: COLORS.bg, border: `2px solid ${COLORS.lime}` }}
+    >
+      <p className="text-base sm:text-lg" style={{ color: COLORS.text }}>
+        Alunos faturando de
+      </p>
+      <p
+        className="my-3 text-5xl sm:text-6xl lg:text-7xl leading-none"
+        style={{ color: COLORS.cyan, fontWeight: 900 }}
+      >
+        R$ 10k a R$ 40k
+      </p>
+      <p className="text-base sm:text-lg" style={{ color: COLORS.text }}>
+        por mês
+      </p>
+    </div>
+  );
+}
+
+function ImpactStats() {
+
+  const cards = [
+    { end: 5000, prefix: "+", label: "Alunos transformados", color: COLORS.cyan },
+    { end: 200, prefix: "+", label: "Clientes atendidos", color: COLORS.lime },
+    { end: 8, label: "Anos de operação", color: COLORS.red },
+    { end: 4, label: "Países alcançados", color: COLORS.lime },
+    { end: 14, label: "Profissões diferentes na comunidade", color: COLORS.cyan },
+    { end: 31, label: "Cursos gratuitos já entregues", color: COLORS.lime },
+  ];
+  return (
+    <div className="mt-20">
+      <h3
+        className="text-center text-3xl sm:text-4xl lg:text-5xl"
+        style={{ color: COLORS.text, fontWeight: 900 }}
+        data-reveal
+      >
+        Nosso impacto em números
+      </h3>
+
+      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {cards.map((c, i) => (
+          <ImpactCard
+            key={c.label}
+            end={c.end}
+            prefix={c.prefix}
+            label={c.label}
+            color={c.color}
+            delay={i * 100}
+          />
+        ))}
+      </div>
+
+      <RevenueCard delay={cards.length * 100} />
+
+    </div>
+  );
+}
+
+
+
 function Index() {
   const rootRef = useReveal();
 
@@ -234,26 +399,8 @@ function Index() {
             ))}
           </div>
 
-          <p
-            className="mt-16 text-center text-4xl sm:text-5xl lg:text-6xl"
-            style={{ color: COLORS.lime, fontWeight: 900 }}
-            data-reveal
-          >
-            +4.000 profissionais impactados
-          </p>
+          <ImpactStats />
 
-          <div className="mt-12 space-y-5 text-base sm:text-lg" data-reveal>
-            <p>
-              E para isso, criamos a maior e melhor comunidade de Responsáveis Técnicos e Consultores de Alimentos do
-              Brasil. Nosso método já impactou mais de 4 mil profissionais, ajudando-os a sair do zero e alcançar
-              faturamentos que antes pareciam impossíveis.
-            </p>
-            <p>
-              Aqui, a teoria se encontra com a prática, a estratégia se alia à técnica, e o aprendizado se transforma
-              em autoridade. Somos Food Smart. E estamos aqui para transformar o mercado e deixar o mundo melhor do que
-              encontramos. Nossa missão vai além da teoria – é uma revolução.
-            </p>
-          </div>
         </div>
       </section>
 
