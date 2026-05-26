@@ -53,7 +53,7 @@ export const Route = createFileRoute("/")({
 });
 
 const WAITLIST_URL = "#"; // [LINK DO YAYFORMS]
-const WHATSAPP_URL = "#"; // [LINK DO WHATSAPP]
+const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5541995896140&text=Ol%C3%A1%2C%20estou%20na%20p%C3%A1gina%20da%20P%C3%B3s%20e%20preciso%20de%20ajuda";
 
 const COLORS = {
   bg: "#1D223B",
