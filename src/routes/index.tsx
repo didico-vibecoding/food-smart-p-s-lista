@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
-import heroBg from "@/assets/hero-bg.png";
+import paulaImg from "@/assets/paula.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -97,32 +97,6 @@ function Check() {
   );
 }
 
-function Glow({
-  color,
-  className = "",
-  size = 480,
-  opacity = 0.12,
-}: {
-  color: string;
-  className?: string;
-  size?: number;
-  opacity?: number;
-}) {
-  return (
-    <div
-      aria-hidden
-      className={`pointer-events-none absolute rounded-full ${className}`}
-      style={{
-        width: size,
-        height: size,
-        background: color,
-        opacity,
-        filter: "blur(120px)",
-      }}
-    />
-  );
-}
-
 function Index() {
   const rootRef = useReveal();
 
@@ -136,19 +110,9 @@ function Index() {
       }}
     >
       {/* 1. HERO */}
-      <section
-        className="relative w-full overflow-hidden"
-        style={{
-          backgroundColor: COLORS.bg,
-          backgroundImage: `url(${heroBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center right",
-          backgroundRepeat: "no-repeat",
-          minHeight: "100vh",
-        }}
-      >
-        <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col items-start gap-10 px-6 py-10 sm:px-10 sm:py-14 lg:flex-row lg:items-center lg:gap-12">
-          <div className="flex w-full flex-col items-start gap-6 lg:w-1/2 lg:py-20" data-reveal>
+      <section className="relative w-full overflow-hidden" style={{ backgroundColor: COLORS.bg, minHeight: "100vh" }}>
+        <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center gap-10 px-6 py-10 sm:px-10 sm:py-14 lg:flex-row lg:items-end lg:gap-12 lg:py-0">
+          <div className="order-2 flex w-full flex-col items-start gap-6 lg:order-1 lg:w-1/2 lg:py-20" data-reveal>
             <span
               className="inline-block rounded-full border px-4 py-1.5 text-xs font-medium sm:text-sm"
               style={{ borderColor: COLORS.cyan, color: COLORS.cyan, backgroundColor: "transparent" }}
@@ -169,14 +133,18 @@ function Index() {
             </p>
             <CTAButton>Entrar para a lista de espera</CTAButton>
           </div>
+          <div className="order-1 flex w-full justify-center self-end lg:order-2 lg:h-screen lg:w-1/2 lg:justify-end" data-reveal>
+            <img
+              src={paulaImg}
+              alt="Paula Eloize, professora da Pós-Graduação em RT e Consultoria de Alimentos da Food Smart"
+              className="block h-auto max-h-[55vh] w-auto object-contain object-bottom lg:max-h-screen lg:h-full"
+            />
+          </div>
         </div>
       </section>
 
       {/* 2. INSTITUCIONAL */}
-      <section
-        className="relative overflow-hidden px-6 py-20 sm:px-10 sm:py-24"
-        style={{ background: `linear-gradient(135deg, ${COLORS.bgAlt} 0%, ${COLORS.bg} 100%)` }}
-      >
+      <section style={{ backgroundColor: COLORS.bgAlt }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Somos o <span style={{ color: COLORS.red }}>maior ecossistema</span> da área de alimentos
@@ -208,7 +176,13 @@ function Index() {
             ))}
           </div>
 
-
+          <p
+            className="mt-16 text-center text-4xl sm:text-5xl lg:text-6xl"
+            style={{ color: COLORS.lime, fontWeight: 900 }}
+            data-reveal
+          >
+            +4.000 profissionais impactados
+          </p>
 
           <div className="mt-12 space-y-5 text-base sm:text-lg" data-reveal>
             <p>
@@ -225,34 +199,8 @@ function Index() {
         </div>
       </section>
 
-      {/* 2.5 ÂNCORA +4.000 */}
-      <section
-        className="relative overflow-hidden px-6 py-16 sm:py-20"
-        style={{ backgroundColor: COLORS.lime }}
-      >
-        <div className="mx-auto max-w-6xl text-center">
-          <p
-            className="text-5xl leading-none sm:text-6xl lg:text-7xl"
-            style={{ color: COLORS.bg, fontWeight: 900 }}
-            data-reveal
-          >
-            +4.000
-          </p>
-          <p
-            className="mt-3 text-xl sm:text-2xl lg:text-3xl"
-            style={{ color: COLORS.bg, fontWeight: 700 }}
-            data-reveal
-          >
-            profissionais impactados
-          </p>
-        </div>
-      </section>
-
       {/* 3. TRANSFORMAÇÃO */}
-      <section
-        className="relative overflow-hidden px-6 py-20 sm:px-10 sm:py-24"
-        style={{ background: `linear-gradient(180deg, ${COLORS.bg} 0%, #1A1F36 100%)` }}
-      >
+      <section style={{ backgroundColor: COLORS.bg }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Mais do que uma pós-graduação.
@@ -285,11 +233,7 @@ function Index() {
       </section>
 
       {/* 4. CARREIRA */}
-      <section
-        className="relative overflow-hidden px-6 py-20 sm:px-10 sm:py-24"
-        style={{ background: `linear-gradient(135deg, ${COLORS.bgAlt} 0%, #2A2F4F 100%)` }}
-      >
-        <Glow color={COLORS.red} className="top-0 right-0" opacity={0.08} size={500} />
+      <section style={{ backgroundColor: COLORS.bgAlt }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Um mercado que <span style={{ color: COLORS.red }}>continua crescendo</span> e buscando profissionais
@@ -330,11 +274,7 @@ function Index() {
       </section>
 
       {/* 5. MÓDULOS */}
-      <section
-        className="relative overflow-hidden px-6 py-20 sm:px-10 sm:py-24"
-        style={{ background: `radial-gradient(ellipse at center, ${COLORS.bgAlt} 0%, ${COLORS.bg} 70%)` }}
-      >
-        <Glow color={COLORS.cyan} className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" opacity={0.14} size={700} />
+      <section style={{ backgroundColor: COLORS.bg }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Conheça a estrutura da formação
@@ -375,10 +315,7 @@ function Index() {
       </section>
 
       {/* 6. DIFERENCIAIS */}
-      <section
-        className="relative overflow-hidden px-6 py-20 sm:px-10 sm:py-24"
-        style={{ background: `linear-gradient(90deg, ${COLORS.bgAlt} 0%, ${COLORS.bg} 100%)` }}
-      >
+      <section style={{ backgroundColor: COLORS.bgAlt }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             O que torna essa formação <span style={{ color: COLORS.red }}>diferente</span>
@@ -403,11 +340,7 @@ function Index() {
       </section>
 
       {/* 7. CERTIFICAÇÃO */}
-      <section
-        className="relative overflow-hidden px-6 py-20 sm:px-10 sm:py-24"
-        style={{ backgroundColor: COLORS.bg }}
-      >
-        <Glow color={COLORS.lime} className="left-1/2 top-16 -translate-x-1/2" opacity={0.12} size={420} />
+      <section style={{ backgroundColor: COLORS.bg }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <div className="flex justify-center" data-reveal>
             <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke={COLORS.lime} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -434,10 +367,7 @@ function Index() {
       </section>
 
       {/* 8. PROVA SOCIAL */}
-      <section
-        className="relative overflow-hidden px-6 py-20 sm:px-10 sm:py-24"
-        style={{ background: `linear-gradient(225deg, ${COLORS.bgAlt} 0%, ${COLORS.bg} 100%)` }}
-      >
+      <section style={{ backgroundColor: COLORS.bgAlt }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Profissionais de diferentes regiões do Brasil já fazem parte dessa formação
@@ -467,11 +397,7 @@ function Index() {
       </section>
 
       {/* 9. CORPO DOCENTE */}
-      <section
-        className="relative overflow-hidden px-6 py-20 sm:px-10 sm:py-24"
-        style={{ backgroundColor: COLORS.bg }}
-      >
-        <Glow color={COLORS.cyan} className="bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2" opacity={0.1} size={600} />
+      <section style={{ backgroundColor: COLORS.bg }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Uma formação construída por quem conhece o mercado
@@ -504,13 +430,9 @@ function Index() {
 
       {/* 10. CTA FINAL */}
       <section
-        style={{
-          background: `radial-gradient(ellipse at center, ${COLORS.bgAlt} 0%, ${COLORS.bg} 80%)`,
-          borderTop: `4px solid ${COLORS.lime}`,
-        }}
-        className="relative overflow-hidden px-6 py-20 sm:px-10 sm:py-24"
+        style={{ backgroundColor: COLORS.bg, borderTop: `4px solid ${COLORS.lime}` }}
+        className="px-6 py-20 sm:px-10 sm:py-24"
       >
-        <Glow color={COLORS.lime} className="left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" opacity={0.15} size={500} />
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Entre para a lista de espera
