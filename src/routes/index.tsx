@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import paulaImg from "@/assets/paula.png";
+import logoFoodSmart from "@/assets/logo-food-smart.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -144,12 +145,11 @@ function Index() {
             className="order-1 flex flex-col justify-center gap-6 text-left md:col-span-7"
             data-reveal
           >
-            <span
-              className="inline-block self-start rounded-full border px-4 py-1.5 text-xs font-medium sm:text-sm"
-              style={{ borderColor: COLORS.cyan, color: COLORS.cyan, backgroundColor: "transparent" }}
-            >
-              Pós-Graduação reconhecida pelo MEC
-            </span>
+            <img
+              src={logoFoodSmart}
+              alt="Food Smart"
+              className="h-12 w-auto self-start sm:h-14"
+            />
             <h1 className="text-4xl leading-tight sm:text-5xl lg:text-6xl" style={{ fontWeight: 900 }}>
               Pós-graduação em RT e{" "}
               <span style={{ color: COLORS.red, filter: "drop-shadow(0 0 25px rgba(238,60,48,0.4))" }}>
