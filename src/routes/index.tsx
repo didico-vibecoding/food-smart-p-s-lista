@@ -829,17 +829,11 @@ function Index() {
       {/* 7. CERTIFICAÇÃO */}
       <section id="certificacao" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem", borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="flex justify-center" data-reveal>
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke={COLORS.lime} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              <path d="m9 12 2 2 4-4" />
-            </svg>
-          </div>
-          <h2 className="mt-6 text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Certificado <span style={{ color: COLORS.red }}>reconhecido pelo MEC</span>
           </h2>
           <p className="mt-6 text-base sm:text-lg" data-reveal>
-            A Pós-Graduação em RT & Consultoria de Alimentos é certificada pela Faculdade Unypública — instituição
+            A Pós-Graduação em RT & Consultoria de Alimentos é certificada pela Faculdade Unypublica — instituição
             credenciada pelo Ministério da Educação conforme Portaria nº 615/2021. Um certificado de especialista que
             você pode apresentar com autoridade no mercado.
           </p>
@@ -869,7 +863,7 @@ function Index() {
               className="flex flex-1 items-center justify-center bg-white"
               style={{ borderRadius: "16px", padding: "24px", height: "180px", boxShadow: "0 20px 60px -10px rgba(45,210,227,0.35)" }}
             >
-              <img src={logoUnypublica} alt="Faculdade Unypública" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto" }} />
+              <img src={logoUnypublica} alt="Faculdade Unypublica" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto" }} />
             </div>
           </div>
         </div>
