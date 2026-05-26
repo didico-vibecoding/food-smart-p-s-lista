@@ -515,24 +515,8 @@ function NewsCarousel() {
         ))}
       </div>
 
-      <button
-        type="button"
-        aria-label="Anterior"
-        onClick={() => go(index - 1)}
-        className="absolute left-2 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full sm:left-4 sm:h-12 sm:w-12"
-        style={{ backgroundColor: "#252A45" }}
-      >
-        <ChevronLeft style={{ color: "#BFF60C" }} />
-      </button>
-      <button
-        type="button"
-        aria-label="Próximo"
-        onClick={() => go(index + 1)}
-        className="absolute right-2 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full sm:right-4 sm:h-12 sm:w-12"
-        style={{ backgroundColor: "#252A45" }}
-      >
-        <ChevronRight style={{ color: "#BFF60C" }} />
-      </button>
+
+
 
       <div className="mt-6 flex justify-center gap-2">
         {NEWS_IMAGES.map((_, i) => (
