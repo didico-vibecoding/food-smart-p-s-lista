@@ -759,7 +759,7 @@ function Index() {
 
 
       {/* 5. MÓDULOS */}
-      <section id="modulos" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem" }} className="px-6 py-20 sm:px-10 sm:py-24">
+      <section id="modulos" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem", borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Conheça a estrutura da formação
