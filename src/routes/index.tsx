@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import paulaImg from "@/assets/paula.png";
 import logoFoodSmart from "@/assets/logo-food-smart.png";
 import logoAcademy from "@/assets/logo-academy.png";
@@ -141,38 +141,141 @@ function FadeInCard({
   );
 }
 
+function useCountUp(target: number, start: boolean, duration = 1500) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!start) return;
+    let raf = 0;
+    const t0 = performance.now();
+    const tick = (now: number) => {
+      const p = Math.min(1, (now - t0) / duration);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setValue(Math.round(eased * target));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target, start, duration]);
+  return value;
+}
+
+function StatCard({
+  prefix,
+  target,
+  label,
+  delay,
+}: {
+  prefix?: string;
+  target: number;
+  label: string;
+  delay: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setVisible(true);
+            window.setTimeout(() => setStarted(true), delay);
+            io.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [delay]);
+
+  const count = useCountUp(target, started, 1500);
+  const display = `${prefix ?? ""}${count.toLocaleString("pt-BR")}`;
+
+  return (
+    <div
+      ref={ref}
+      className="group relative text-center flex flex-col items-center justify-center overflow-hidden"
+      style={{
+        backgroundColor: COLORS.bgAlt,
+        borderRadius: 16,
+        padding: 40,
+        border: "1px solid rgba(45,210,227,0.15)",
+        boxShadow: "0 8px 24px -12px rgba(0,0,0,0.4)",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(12px)",
+        transition: `opacity 600ms ease-out ${delay}ms, transform 600ms ease-out ${delay}ms, border-color 300ms ease, box-shadow 300ms ease`,
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = "rgba(45,210,227,0.5)";
+        e.currentTarget.style.boxShadow =
+          "0 16px 40px -16px rgba(45,210,227,0.35), 0 0 0 1px rgba(45,210,227,0.2)";
+        e.currentTarget.style.transform = "translateY(-4px)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "rgba(45,210,227,0.15)";
+        e.currentTarget.style.boxShadow = "0 8px 24px -12px rgba(0,0,0,0.4)";
+        e.currentTarget.style.transform = "translateY(0)";
+      }}
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-x-8 top-0 h-px"
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(45,210,227,0.6), transparent)",
+        }}
+      />
+      <span
+        className="block text-5xl sm:text-6xl leading-none"
+        style={{
+          color: COLORS.cyan,
+          fontWeight: 900,
+          textShadow: "0 0 24px rgba(45,210,227,0.35)",
+        }}
+      >
+        {display}
+      </span>
+      <p className="mt-4 text-base sm:text-lg" style={{ color: COLORS.text }}>
+        {label}
+      </p>
+    </div>
+  );
+}
+
 function ImpactStats() {
   const cards = [
-    { value: "+5.000", label: "Alunos transformados" },
-    { value: "+200", label: "Clientes atendidos" },
-    { value: "8", label: "Anos de operação" },
-    { value: "4", label: "Países alcançados" },
+    { prefix: "+", target: 5000, label: "Alunos transformados" },
+    { prefix: "+", target: 200, label: "Clientes atendidos" },
+    { target: 8, label: "Anos de operação" },
+    { target: 4, label: "Países alcançados" },
   ];
 
   return (
     <div className="mt-20">
-      <div className="mx-auto w-full max-w-[1200px]">
+      <div className="relative mx-auto w-full max-w-[1200px]">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10"
+          style={{
+            background:
+              "radial-gradient(60% 50% at 50% 50%, rgba(45,210,227,0.10), transparent 70%)",
+            filter: "blur(20px)",
+          }}
+        />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {cards.map((c, i) => (
-            <FadeInCard
+            <StatCard
               key={c.label}
+              prefix={c.prefix}
+              target={c.target}
+              label={c.label}
               delay={i * 100}
-              className="text-center flex flex-col items-center justify-center"
-              style={{ backgroundColor: COLORS.bgAlt, borderRadius: 16, padding: 40 }}
-            >
-              <span
-                className="block text-5xl sm:text-6xl leading-none"
-                style={{ color: COLORS.cyan, fontWeight: 900 }}
-              >
-                {c.value}
-              </span>
-              <p
-                className="mt-4 text-base sm:text-lg"
-                style={{ color: COLORS.text }}
-              >
-                {c.label}
-              </p>
-            </FadeInCard>
+            />
           ))}
         </div>
       </div>
