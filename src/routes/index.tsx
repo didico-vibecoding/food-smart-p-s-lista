@@ -181,7 +181,53 @@ function ImpactCard({ end, prefix, suffix, label, color, delay }: { end: number;
   );
 }
 
+function RevenueCard({ delay }: { delay: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.style.opacity = "0";
+    el.style.transform = "translateY(28px)";
+    el.style.transition = `opacity 700ms ease-out ${delay}ms, transform 700ms ease-out ${delay}ms`;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+            io.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [delay]);
+  return (
+    <div
+      ref={ref}
+      className="mt-6 rounded-2xl p-8 sm:p-12 text-center"
+      style={{ backgroundColor: COLORS.bg, border: `2px solid ${COLORS.lime}` }}
+    >
+      <p className="text-base sm:text-lg" style={{ color: COLORS.text }}>
+        Alunos faturando de
+      </p>
+      <p
+        className="my-3 text-5xl sm:text-6xl lg:text-7xl leading-none"
+        style={{ color: COLORS.cyan, fontWeight: 900 }}
+      >
+        R$ 10k a R$ 40k
+      </p>
+      <p className="text-base sm:text-lg" style={{ color: COLORS.text }}>
+        por mês
+      </p>
+    </div>
+  );
+}
+
 function ImpactStats() {
+
   const cards = [
     { end: 5000, prefix: "+", label: "Alunos transformados", color: COLORS.cyan },
     { end: 200, prefix: "+", label: "Clientes atendidos", color: COLORS.lime },
