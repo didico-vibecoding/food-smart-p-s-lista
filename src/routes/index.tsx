@@ -446,7 +446,7 @@ function Index() {
                 "Estratégias para conquistar clientes e fortalecer sua autoridade",
               ].map((i) => (
                 <li key={i} className="flex items-start gap-3 text-base sm:text-lg" data-reveal>
-                  <Check color={COLORS.cyan} />
+                  <Check color={COLORS.lime} />
                   <span>{i}</span>
                 </li>
               ))}
@@ -459,7 +459,7 @@ function Index() {
                 "Precificação, contratos e posicionamento profissional",
               ].map((i) => (
                 <li key={i} className="flex items-start gap-3 text-base sm:text-lg" data-reveal>
-                  <Check color={COLORS.cyan} />
+                  <Check color={COLORS.lime} />
                   <span>{i}</span>
                 </li>
               ))}
