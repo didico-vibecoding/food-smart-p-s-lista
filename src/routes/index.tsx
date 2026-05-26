@@ -436,35 +436,8 @@ function Index() {
             Ao longo da formação, você terá acesso a conteúdos que ajudam não apenas na parte técnica, mas também na
             construção da sua atuação profissional.
           </p>
-          <div className="mt-10 grid gap-x-8 gap-y-4 md:grid-cols-2">
-            <ul className="flex flex-col gap-4">
-              {[
-                "Responsabilidade Técnica na prática",
-                "Legislação e órgãos fiscalizadores",
-                "Auditorias e visitas técnicas",
-                "Indústria, supermercados e serviços de alimentação",
-                "Estratégias para conquistar clientes e fortalecer sua autoridade",
-              ].map((i) => (
-                <li key={i} className="flex items-start gap-3 text-base sm:text-lg" data-reveal>
-                  <Check color={COLORS.lime} />
-                  <span>{i}</span>
-                </li>
-              ))}
-            </ul>
-            <ul className="flex flex-col gap-4">
-              {[
-                "Consultoria para empresas de alimentos",
-                "Boas Práticas de Fabricação",
-                "Rotulagem e registro de produtos",
-                "Precificação, contratos e posicionamento profissional",
-              ].map((i) => (
-                <li key={i} className="flex items-start gap-3 text-base sm:text-lg" data-reveal>
-                  <Check color={COLORS.lime} />
-                  <span>{i}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <JourneyTimeline />
+
         </div>
       </section>
 
