@@ -300,6 +300,7 @@ const JOURNEY_ITEMS = [
 function JourneyTimeline() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [lineHeight, setLineHeight] = useState(0);
+  const [lineMaxPx, setLineMaxPx] = useState<number | null>(null);
   const [visible, setVisible] = useState<boolean[]>(() => JOURNEY_ITEMS.map(() => false));
   const [active, setActive] = useState<boolean[]>(() => JOURNEY_ITEMS.map(() => false));
   const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
