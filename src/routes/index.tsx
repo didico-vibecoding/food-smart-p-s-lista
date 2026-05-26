@@ -97,6 +97,32 @@ function Check() {
   );
 }
 
+function Glow({
+  color,
+  className = "",
+  size = 480,
+  opacity = 0.12,
+}: {
+  color: string;
+  className?: string;
+  size?: number;
+  opacity?: number;
+}) {
+  return (
+    <div
+      aria-hidden
+      className={`pointer-events-none absolute rounded-full ${className}`}
+      style={{
+        width: size,
+        height: size,
+        background: color,
+        opacity,
+        filter: "blur(120px)",
+      }}
+    />
+  );
+}
+
 function Index() {
   const rootRef = useReveal();
 
