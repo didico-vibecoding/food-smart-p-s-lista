@@ -776,7 +776,6 @@ function Index() {
               "Rotulagem e Registro de Produtos",
               "Projeto & Obra em Empresas de Alimentos",
               "Consultoria, Empreendedorismo e Gestão",
-              "Metodologia Científica",
             ].map((title, idx) => (
               <div
                 key={title}
