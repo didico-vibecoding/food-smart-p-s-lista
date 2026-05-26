@@ -6,7 +6,7 @@ import logoAcademy from "@/assets/logo-academy.png";
 import logoConsultoria from "@/assets/logo-consultoria.png";
 import logoVerifica from "@/assets/logo-verifica.png";
 import { TopNav } from "@/components/TopNav";
-import { GraduationCap, Handshake, Trophy, Globe, Users, BookOpen, TrendingUp } from "lucide-react";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
