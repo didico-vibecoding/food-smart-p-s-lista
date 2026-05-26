@@ -7,6 +7,7 @@ import logoConsultoria from "@/assets/logo-consultoria.png";
 import logoVerifica from "@/assets/logo-verifica.png";
 import logoUnypublica from "@/assets/logo-unypublica.png";
 import qrCodeEmec from "@/assets/qr-code-emec.png";
+import alunaAlice from "@/assets/aluna-alice.jpeg";
 import { TopNav } from "@/components/TopNav";
 import newsPoder360 from "@/assets/news-poder360.png";
 import newsExame from "@/assets/news-exame.png";
