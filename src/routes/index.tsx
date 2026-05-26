@@ -725,9 +725,7 @@ function Index() {
             {[
               "Graduados ou estudantes* de Medicina Veterinária, Zootecnia, Nutrição, Engenharia de Alimentos ou Tecnologia de Alimentos que querem atuar com autoridade na área de alimentos",
               "Profissionais que já atuam no mercado e querem dar um salto técnico — saindo da execução operacional para uma posição de referência e consultoria",
-              "Quem está insatisfeito com a remuneração atual e quer construir uma carreira mais sólida, com mais autonomia e possibilidades reais de crescimento",
               "Profissionais que desejam comprovar sua qualificação com um certificado reconhecido pelo MEC e ganhar credibilidade perante clientes e empresas",
-              "Quem quer sair do zero na área de alimentos com método, base técnica e segurança — sem depender de tentativa e erro",
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="mt-1 shrink-0" aria-hidden="true">
