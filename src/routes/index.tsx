@@ -711,6 +711,50 @@ function Index() {
         </div>
       </section>
 
+      {/* 4.5 PARA QUEM É */}
+      <section style={{ backgroundColor: COLORS.bgAlt }} className="px-6 py-20 sm:px-10 sm:py-24">
+        <div className="mx-auto max-w-[800px]">
+          <h2 className="text-center text-3xl sm:text-4xl lg:text-5xl text-white" style={{ fontWeight: 900 }} data-reveal>
+            Para quem é essa formação?
+          </h2>
+          <p className="mt-6 text-center text-base sm:text-lg text-white/80" data-reveal>
+            Se você se reconhece em algum desses perfis, essa pós-graduação foi pensada para você.
+          </p>
+          <ul className="mt-10 space-y-5 text-left text-white text-base sm:text-lg" data-reveal>
+            {[
+              "Graduados ou estudantes* de Medicina Veterinária, Zootecnia, Nutrição, Engenharia de Alimentos ou Tecnologia de Alimentos que querem atuar com autoridade na área de alimentos",
+              "Profissionais que já atuam no mercado e querem dar um salto técnico — saindo da execução operacional para uma posição de referência e consultoria",
+              "Quem está insatisfeito com a remuneração atual e quer construir uma carreira mais sólida, com mais autonomia e possibilidades reais de crescimento",
+              "Profissionais que desejam comprovar sua qualificação com um certificado reconhecido pelo MEC e ganhar credibilidade perante clientes e empresas",
+              "Quem quer sair do zero na área de alimentos com método, base técnica e segurança — sem depender de tentativa e erro",
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="mt-1 shrink-0" aria-hidden="true">
+                  <path d="M5 12.5l4.5 4.5L19 7.5" stroke={COLORS.lime} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-left text-sm text-white/60" data-reveal>
+            *Estudantes: entre em contato com nosso time de consultores para verificar se o período em que você está já te torna elegível para iniciar a pós-graduação.
+          </p>
+          <div className="mt-8" data-reveal>
+            <a
+              href="https://wa.me/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block rounded-full px-8 py-4 text-base transition-transform hover:scale-105"
+              style={{ backgroundColor: COLORS.lime, color: COLORS.bg, fontWeight: 900 }}
+            >
+              Falar com um consultor
+            </a>
+          </div>
+        </div>
+      </section>
+
+
+
       {/* 5. MÓDULOS */}
       <section id="modulos" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem" }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-6xl">
