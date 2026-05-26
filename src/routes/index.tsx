@@ -5,6 +5,8 @@ import logoFoodSmart from "@/assets/logo-food-smart.png";
 import logoAcademy from "@/assets/logo-academy.png";
 import logoConsultoria from "@/assets/logo-consultoria.png";
 import logoVerifica from "@/assets/logo-verifica.png";
+import logoUnypublica from "@/assets/logo-unypublica.png";
+import qrCodeEmec from "@/assets/qr-code-emec.png";
 import { TopNav } from "@/components/TopNav";
 import newsPoder360 from "@/assets/news-poder360.png";
 import newsExame from "@/assets/news-exame.png";
@@ -842,11 +844,29 @@ function Index() {
             você pode apresentar com autoridade no mercado.
           </p>
           <div
-            className="mx-auto mt-8 inline-block rounded-2xl border px-6 py-4 text-sm sm:text-base"
-            style={{ backgroundColor: COLORS.bgAlt, borderColor: COLORS.cyan, color: COLORS.cyan }}
+            className="mt-8 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-10"
             data-reveal
           >
-            Portaria MEC nº 615/2021 · Faculdade Unypública · e-MEC nº 22660
+            <img
+              src={logoUnypublica}
+              alt="Faculdade Unypública"
+              style={{ height: "60px", width: "auto" }}
+            />
+            <a
+              href="https://emec.mec.gov.br/emec/consulta-cadastro/detalhamento/d96957f455f6405d14c6542552b0f6eb/MjI2NjA=/93916316abe23148507bd4c260e4b878/MzMxOTQ3"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-2"
+            >
+              <img
+                src={qrCodeEmec}
+                alt="QR Code e-MEC"
+                style={{ width: "100px", height: "100px" }}
+              />
+              <span style={{ color: COLORS.cyan, fontFamily: "Poppins, sans-serif", fontWeight: 400, fontSize: "0.875rem" }}>
+                Verifique no e-Mec
+              </span>
+            </a>
           </div>
         </div>
       </section>
