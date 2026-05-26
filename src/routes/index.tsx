@@ -631,25 +631,10 @@ function Index() {
             Um mercado que <span style={{ color: COLORS.red }}>continua crescendo</span> e buscando profissionais
             especializados
           </h2>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {[
-              { n: "7 milhões", d: "profissionais empregados na indústria de alimentos no Brasil" },
-              { n: "24%", d: "das vagas da indústria de transformação são na área de alimentos" },
-              { n: "44.000+", d: "vagas com carteira assinada criadas no setor em um único ano" },
-            ].map((c) => (
-              <div
-                key={c.n}
-                className="rounded-2xl p-6"
-                style={{ backgroundColor: COLORS.bg, borderTop: `4px solid ${COLORS.lime}` }}
-                data-reveal
-              >
-                <div className="text-4xl sm:text-5xl" style={{ color: COLORS.lime, fontWeight: 900 }}>
-                  {c.n}
-                </div>
-                <p className="mt-3 text-sm sm:text-base">{c.d}</p>
-              </div>
-            ))}
+          <div className="mt-12" data-reveal>
+            <NewsCarousel />
           </div>
+
           <div className="mt-12 space-y-5 text-base sm:text-lg" data-reveal>
             <p>
               Empresas de alimentos precisam atender exigências sanitárias cada vez mais rigorosas. Indústrias,
