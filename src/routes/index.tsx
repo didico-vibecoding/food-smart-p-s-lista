@@ -415,23 +415,28 @@ function JourneyTimeline() {
       `}</style>
       <div
         aria-hidden
-        className="absolute left-3 sm:left-4 top-2 w-[2px]"
+        className="absolute left-3 sm:left-4 w-[2px]"
         style={{
           backgroundColor: "rgba(45,210,227,0.15)",
-          height: lineMaxPx != null ? `${Math.max(0, lineMaxPx - 8)}px` : undefined,
+          top: lineMinPx != null ? `${lineMinPx}px` : 8,
+          height: lineMaxPx != null && lineMinPx != null ? `${Math.max(0, lineMaxPx - lineMinPx)}px` : undefined,
           bottom: lineMaxPx == null ? 8 : undefined,
         }}
       />
       <div
         aria-hidden
-        className="absolute left-3 sm:left-4 top-2 w-[2px]"
+        className="absolute left-3 sm:left-4 w-[2px]"
         style={{
           backgroundColor: COLORS.cyan,
+          top: lineMinPx != null ? `${lineMinPx}px` : 8,
           height:
-            lineMaxPx != null
-              ? `${Math.max(0, (lineHeight / 100) * (lineMaxPx - 8))}px`
+            lineMaxPx != null && lineMinPx != null
+              ? `${Math.max(0, (lineHeight / 100) * (lineMaxPx - lineMinPx))}px`
               : `calc(${lineHeight}% - 4px)`,
-          maxHeight: lineMaxPx != null ? `${Math.max(0, lineMaxPx - 8)}px` : "calc(100% - 4px)",
+          maxHeight:
+            lineMaxPx != null && lineMinPx != null
+              ? `${Math.max(0, lineMaxPx - lineMinPx)}px`
+              : "calc(100% - 4px)",
           transition: `height 200ms ${EASE}`,
         }}
       />
