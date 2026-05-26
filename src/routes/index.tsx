@@ -213,12 +213,8 @@ function ImpactStats() {
         ))}
       </div>
 
-      <ImpactCard
-        end={0}
-        delay={cards.length * 100}
-        color={COLORS.cyan}
-        label=""
-      />
+      <RevenueCard delay={cards.length * 100} />
+
     </div>
   );
 }
