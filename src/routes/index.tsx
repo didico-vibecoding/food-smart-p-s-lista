@@ -13,7 +13,7 @@ import newsGloboRural from "@/assets/news-globorural.png";
 import newsFiesc from "@/assets/news-fiesc.png";
 import newsValor from "@/assets/news-valor.png";
 import newsPegn from "@/assets/news-pegn.png";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+
 
 
 export const Route = createFileRoute("/")({
