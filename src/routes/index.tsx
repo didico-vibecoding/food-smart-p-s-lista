@@ -234,26 +234,8 @@ function Index() {
             ))}
           </div>
 
-          <p
-            className="mt-16 text-center text-4xl sm:text-5xl lg:text-6xl"
-            style={{ color: COLORS.lime, fontWeight: 900 }}
-            data-reveal
-          >
-            +4.000 profissionais impactados
-          </p>
+          <ImpactStats />
 
-          <div className="mt-12 space-y-5 text-base sm:text-lg" data-reveal>
-            <p>
-              E para isso, criamos a maior e melhor comunidade de Responsáveis Técnicos e Consultores de Alimentos do
-              Brasil. Nosso método já impactou mais de 4 mil profissionais, ajudando-os a sair do zero e alcançar
-              faturamentos que antes pareciam impossíveis.
-            </p>
-            <p>
-              Aqui, a teoria se encontra com a prática, a estratégia se alia à técnica, e o aprendizado se transforma
-              em autoridade. Somos Food Smart. E estamos aqui para transformar o mercado e deixar o mundo melhor do que
-              encontramos. Nossa missão vai além da teoria – é uma revolução.
-            </p>
-          </div>
         </div>
       </section>
 
