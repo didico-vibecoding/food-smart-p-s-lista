@@ -91,11 +91,12 @@ function CTAButton({ children, className = "" }: { children: React.ReactNode; cl
   );
 }
 
-function Check() {
+function Check({ color }: { color?: string }) {
+  const c = color ?? COLORS.lime;
   return (
     <span
       className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full"
-      style={{ backgroundColor: "rgba(191,246,12,0.12)", color: COLORS.lime }}
+      style={{ backgroundColor: `${c}1F`, color: c }}
       aria-hidden
     >
       ✔
