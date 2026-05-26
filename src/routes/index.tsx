@@ -6,6 +6,14 @@ import logoAcademy from "@/assets/logo-academy.png";
 import logoConsultoria from "@/assets/logo-consultoria.png";
 import logoVerifica from "@/assets/logo-verifica.png";
 import { TopNav } from "@/components/TopNav";
+import newsPoder360 from "@/assets/news-poder360.png";
+import newsExame from "@/assets/news-exame.png";
+import newsFolha from "@/assets/news-folha.png";
+import newsGloboRural from "@/assets/news-globorural.png";
+import newsFiesc from "@/assets/news-fiesc.png";
+import newsValor from "@/assets/news-valor.png";
+import newsPegn from "@/assets/news-pegn.png";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 
 export const Route = createFileRoute("/")({
