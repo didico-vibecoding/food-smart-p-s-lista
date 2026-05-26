@@ -13,6 +13,7 @@ import alunaLunearane from "@/assets/aluna-lunearane.jpg";
 import professoraPaulaEloize from "@/assets/professora-paula-eloize.png";
 import professorGregoriFagundes from "@/assets/professor-gregori-fagundes.png";
 import professoraFabianaLeal from "@/assets/professora-fabiana-leal.png";
+import professoraGabrielaAuth from "@/assets/professora-gabriela-auth.png";
 import { TopNav } from "@/components/TopNav";
 import newsPoder360 from "@/assets/news-poder360.png";
 import newsExame from "@/assets/news-exame.png";
@@ -548,7 +549,7 @@ const TEACHERS: Teacher[] = [
   { name: "Paula Eloize", role: "", photo: professoraPaulaEloize },
   { name: "Grégori Fagundes", role: "", photo: professorGregoriFagundes },
   { name: "Fabiana Leal", role: "", photo: professoraFabianaLeal },
-  { name: "Professor(a)", role: "", photo: null },
+  { name: "Gabriela Auth", role: "", photo: professoraGabrielaAuth },
 ];
 
 function TeachersCarousel() {
