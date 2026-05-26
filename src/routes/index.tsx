@@ -223,7 +223,7 @@ function Index() {
                 style={{ backgroundColor: COLORS.bg, borderTop: `4px solid ${COLORS.lime}` }}
                 data-reveal
               >
-                <div className="mb-5 flex h-32 items-center justify-center overflow-hidden rounded-xl bg-white p-4">
+                <div className="mb-5 flex h-32 items-center justify-center px-4">
                   <img src={c.img} alt={`Logo ${c.t}`} className="max-h-full max-w-full object-contain" />
                 </div>
                 <h3 className="text-xl" style={{ color: COLORS.lime, fontWeight: 700 }}>
