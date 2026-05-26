@@ -540,6 +540,7 @@ function NewsCarousel() {
 
 function Index() {
   const rootRef = useReveal();
+  const [openTestimonial, setOpenTestimonial] = useState<number | null>(null);
 
   return (
     <div
