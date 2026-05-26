@@ -800,31 +800,6 @@ function Index() {
         </div>
       </section>
 
-      {/* 6. DIFERENCIAIS */}
-      <section style={{ backgroundColor: COLORS.bgAlt, borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-20 sm:px-10 sm:py-24">
-
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
-            O que torna essa formação <span style={{ color: COLORS.red }}>diferente</span>
-          </h2>
-          <ul className="mt-10 grid gap-4 md:grid-cols-2">
-            {[
-              "Pós-graduação reconhecida pelo MEC",
-              "Conteúdo voltado para aplicação prática",
-              "Professores com atuação real no mercado",
-              "Formação voltada para diferentes segmentos da área de alimentos",
-              "Desenvolvimento técnico e profissional",
-              "Aulas pensadas para aproximar teoria e prática",
-              "Formação alinhada às demandas atuais do mercado",
-            ].map((i) => (
-              <li key={i} className="flex items-start gap-3 text-base sm:text-lg" data-reveal>
-                <Check />
-                <span>{i}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
 
       {/* 7. CERTIFICAÇÃO */}
       <section id="certificacao" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem", borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-20 sm:px-10 sm:py-24">
