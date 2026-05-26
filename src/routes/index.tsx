@@ -8,6 +8,7 @@ import logoVerifica from "@/assets/logo-verifica.png";
 import logoUnypublica from "@/assets/logo-unypublica.png";
 import qrCodeEmec from "@/assets/qr-code-emec.png";
 import alunaAlice from "@/assets/aluna-alice.jpeg";
+import alunaLivia from "@/assets/aluna-livia.png";
 import { TopNav } from "@/components/TopNav";
 import newsPoder360 from "@/assets/news-poder360.png";
 import newsExame from "@/assets/news-exame.png";
@@ -860,7 +861,12 @@ function Index() {
                 quote:
                   "O diferencial desse método é que ele vai além da base teórica, ensinando não apenas o conhecimento técnico, mas também como se posicionar e se portar profissionalmente. Os módulos abordam aspectos como posicionamento nas redes sociais, postura diante do cliente e elaboração de contratos. Esses ensinamentos se tornaram o grande diferencial para mim.",
               },
-              { name: "Nome do Aluno", photo: null, quote: "Depoimento em breve" },
+              {
+                name: "Livia",
+                photo: alunaLivia,
+                quote:
+                  "Eu era refém de clínica e em menos de um ano já consegui atingir o que eu nem imaginava: abri a minha própria empresa, trabalho para mim mesma e faço os meus próprios horários. O meu maior medo era não dar conta, mas após aplicar o método eu conquistei confiança e consegui me estabilizar. Agora, me sinto segura e totalmente realizada pessoal e financeiramente.",
+              },
               { name: "Nome do Aluno", photo: null, quote: "Depoimento em breve" },
             ].map((t, idx) => {
               const isOpen = openTestimonial === idx;
