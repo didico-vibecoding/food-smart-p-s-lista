@@ -322,6 +322,12 @@ function JourneyTimeline() {
       // Sincroniza estado ativo dos marcadores com a frente da linha
       const lineFrontPx = (p * total * 100) / 100; // px a partir do top do container
       const containerTop = rect.top;
+      const lastNode = itemRefs.current[itemRefs.current.length - 1];
+      if (lastNode) {
+        const lr = lastNode.getBoundingClientRect();
+        const lastCenter = lr.top - containerTop + lr.height / 2;
+        setLineMaxPx((prev) => (prev === lastCenter ? prev : lastCenter));
+      }
       setActive((prev) => {
         let changed = false;
         const next = prev.slice();
