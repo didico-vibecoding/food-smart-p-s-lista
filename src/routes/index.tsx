@@ -1045,24 +1045,10 @@ function Index() {
             técnica, auditorias, segurança dos alimentos e atuação estratégica no setor alimentício. Uma formação
             construída por quem conhece os desafios reais do mercado.
           </p>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-4">
-            {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                className="rounded-2xl p-6 text-center"
-                style={{ backgroundColor: COLORS.bgAlt }}
-                data-reveal
-              >
-                <div
-                  className="mx-auto h-24 w-24 rounded-full"
-                  style={{ backgroundColor: COLORS.bg, border: `2px solid ${COLORS.cyan}` }}
-                />
-                <div className="mt-4 text-base" style={{ fontWeight: 700 }}>
-                  Professor(a)
-                </div>
-              </div>
-            ))}
+          <div className="mt-10">
+            <TeachersCarousel />
           </div>
+
         </div>
       </section>
 
