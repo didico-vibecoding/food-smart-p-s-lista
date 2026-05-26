@@ -738,7 +738,7 @@ function Index() {
             ))}
           </ul>
           <p className="mt-8 text-left text-sm text-white/60" data-reveal>
-            *Estudantes: entre em contato com nosso time de consultores para verificar se o período em que você está já te torna elegível para iniciar a pós-graduação.
+            *Ainda na graduação? Fale com nosso time para saber se você já pode começar.
           </p>
           <div className="mt-8" data-reveal>
             <a
