@@ -433,8 +433,8 @@ function JourneyTimeline() {
                 }}
               />
               <span
-                className="text-base sm:text-lg"
-                style={{ color: isLast ? COLORS.lime : "#FFFFFF", fontWeight: isLast ? 600 : 400 }}
+                className="text-lg sm:text-xl"
+                style={{ color: isLast ? COLORS.lime : "#FFFFFF", fontWeight: 600 }}
               >
                 {text}
               </span>
