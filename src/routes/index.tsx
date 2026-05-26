@@ -1069,11 +1069,19 @@ function Index() {
       >
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
-            Faça sua Pré-inscrição!
+            <span className="block">Faça sua</span>
+            <span className="block">Pré-inscrição!</span>
           </h2>
           <p className="mt-6 text-base sm:text-lg" data-reveal>
-            Receba em primeira mão as informações sobre a próxima turma da Pós-Graduação em RT e Consultoria de
-            Alimentos.
+            Receba em{" "}
+            <span style={{ color: "#BFF60C", fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>primeira mão</span>{" "}
+            as informações sobre a{" "}
+            <span style={{ color: "#2DD2E3", fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>próxima turma</span>{" "}
+            da{" "}
+            <span style={{ color: "#EE3C30", fontFamily: "Poppins, sans-serif", fontWeight: 700 }}>
+              Pós-Graduação em RT e Consultoria de Alimentos
+            </span>
+            .
           </p>
           <div className="mt-8 flex justify-center" data-reveal>
             <CTAButton>Fazer minha Pré-Inscrição</CTAButton>
