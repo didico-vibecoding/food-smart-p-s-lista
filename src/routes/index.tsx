@@ -213,9 +213,9 @@ function Index() {
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {[
-              { t: "Food Smart Academy", d: "Nossa plataforma de treinamento e especialização para profissionais de alimentos.", img: logoAcademy },
-              { t: "Food Smart Consultoria", d: "Regularizamos empresas de alimentos em todo Brasil.", img: logoConsultoria },
-              { t: "VerificaSmart", d: "Aplicativo completo para otimizar as suas auditorias.", img: logoVerifica },
+              { t: "Food Smart Academy", d: "Nossa plataforma de treinamento e especialização para profissionais de alimentos.", img: logoAcademy, scale: 1.7 },
+              { t: "Food Smart Consultoria", d: "Regularizamos empresas de alimentos em todo Brasil.", img: logoConsultoria, scale: 1 },
+              { t: "VerificaSmart", d: "Aplicativo completo para otimizar as suas auditorias.", img: logoVerifica, scale: 1 },
             ].map((c) => (
               <div
                 key={c.t}
@@ -224,7 +224,7 @@ function Index() {
                 data-reveal
               >
                 <div className="mb-5 flex h-32 items-center justify-center px-4">
-                  <img src={c.img} alt={`Logo ${c.t}`} className="max-h-full max-w-full object-contain" />
+                  <img src={c.img} alt={`Logo ${c.t}`} className="max-h-full max-w-full object-contain" style={{ transform: `scale(${c.scale})` }} />
                 </div>
                 <h3 className="text-xl" style={{ color: COLORS.lime, fontWeight: 700 }}>
                   {c.t}
