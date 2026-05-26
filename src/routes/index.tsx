@@ -917,7 +917,7 @@ function Index() {
       {/* 10. CTA FINAL */}
       <section
         id="pre-inscricao"
-        style={{ backgroundColor: COLORS.bg, borderTop: `4px solid ${COLORS.lime}`, scrollMarginTop: "5rem" }}
+        style={{ backgroundColor: COLORS.bg, borderTop: `3px solid ${COLORS.lime}`, scrollMarginTop: "5rem" }}
         className="px-6 py-20 sm:px-10 sm:py-24"
       >
         <div className="mx-auto max-w-3xl text-center">
