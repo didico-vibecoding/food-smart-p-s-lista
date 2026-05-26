@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 import paulaImg from "@/assets/paula.png";
 import logoFoodSmart from "@/assets/logo-food-smart.png";
+import { TopNav } from "@/components/TopNav";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -110,6 +111,7 @@ function Index() {
         fontFamily: "'Poppins', sans-serif",
       }}
     >
+      <TopNav />
       {/* 1. HERO */}
       <section className="relative w-full overflow-hidden" style={{ backgroundColor: COLORS.bg, minHeight: "100vh" }}>
         {/* Camadas de atmosfera */}
@@ -250,7 +252,7 @@ function Index() {
       </section>
 
       {/* 3. TRANSFORMAÇÃO */}
-      <section style={{ backgroundColor: COLORS.bg }} className="px-6 py-20 sm:px-10 sm:py-24">
+      <section id="a-pos" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem" }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Mais do que uma pós-graduação.
@@ -324,7 +326,7 @@ function Index() {
       </section>
 
       {/* 5. MÓDULOS */}
-      <section style={{ backgroundColor: COLORS.bg }} className="px-6 py-20 sm:px-10 sm:py-24">
+      <section id="modulos" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem" }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl" style={{ fontWeight: 900 }} data-reveal>
             Conheça a estrutura da formação
@@ -390,7 +392,7 @@ function Index() {
       </section>
 
       {/* 7. CERTIFICAÇÃO */}
-      <section style={{ backgroundColor: COLORS.bg }} className="px-6 py-20 sm:px-10 sm:py-24">
+      <section id="certificacao" style={{ backgroundColor: COLORS.bg, scrollMarginTop: "5rem" }} className="px-6 py-20 sm:px-10 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <div className="flex justify-center" data-reveal>
             <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke={COLORS.lime} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -480,7 +482,8 @@ function Index() {
 
       {/* 10. CTA FINAL */}
       <section
-        style={{ backgroundColor: COLORS.bg, borderTop: `4px solid ${COLORS.lime}` }}
+        id="pre-inscricao"
+        style={{ backgroundColor: COLORS.bg, borderTop: `4px solid ${COLORS.lime}`, scrollMarginTop: "5rem" }}
         className="px-6 py-20 sm:px-10 sm:py-24"
       >
         <div className="mx-auto max-w-3xl text-center">
