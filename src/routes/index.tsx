@@ -712,12 +712,13 @@ function Index() {
       </section>
 
       {/* 4.5 PARA QUEM É */}
-      <section style={{ backgroundColor: COLORS.bgAlt }} className="px-6 py-20 sm:px-10 sm:py-24">
-        <div className="mx-auto max-w-[800px]">
-          <h2 className="text-center text-3xl sm:text-4xl lg:text-5xl text-white" style={{ fontWeight: 900 }} data-reveal>
+      <section style={{ backgroundColor: COLORS.bg, borderTop: `3px solid ${COLORS.lime}` }} className="px-6 py-12 sm:px-10 sm:py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="max-w-[800px]">
+          <h2 className="text-left text-3xl sm:text-4xl lg:text-5xl text-white" style={{ fontWeight: 900 }} data-reveal>
             Para quem é essa formação?
           </h2>
-          <p className="mt-6 text-center text-base sm:text-lg text-white/80" data-reveal>
+          <p className="mt-6 text-left text-base sm:text-lg text-white/80" data-reveal>
             Se você se reconhece em algum desses perfis, essa pós-graduação foi pensada para você.
           </p>
           <ul className="mt-10 space-y-5 text-left text-white text-base sm:text-lg" data-reveal>
