@@ -300,6 +300,7 @@ const JOURNEY_ITEMS = [
 function JourneyTimeline() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [lineHeight, setLineHeight] = useState(0);
+  const [lineMaxPx, setLineMaxPx] = useState<number | null>(null);
   const [visible, setVisible] = useState<boolean[]>(() => JOURNEY_ITEMS.map(() => false));
   const [active, setActive] = useState<boolean[]>(() => JOURNEY_ITEMS.map(() => false));
   const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
@@ -321,6 +322,12 @@ function JourneyTimeline() {
       // Sincroniza estado ativo dos marcadores com a frente da linha
       const lineFrontPx = (p * total * 100) / 100; // px a partir do top do container
       const containerTop = rect.top;
+      const lastNode = itemRefs.current[itemRefs.current.length - 1];
+      if (lastNode) {
+        const lr = lastNode.getBoundingClientRect();
+        const lastCenter = lr.top - containerTop + lr.height / 2;
+        setLineMaxPx((prev) => (prev === lastCenter ? prev : lastCenter));
+      }
       setActive((prev) => {
         let changed = false;
         const next = prev.slice();
@@ -384,16 +391,23 @@ function JourneyTimeline() {
       `}</style>
       <div
         aria-hidden
-        className="absolute left-3 sm:left-4 top-2 bottom-2 w-[2px]"
-        style={{ backgroundColor: "rgba(45,210,227,0.15)" }}
+        className="absolute left-3 sm:left-4 top-2 w-[2px]"
+        style={{
+          backgroundColor: "rgba(45,210,227,0.15)",
+          height: lineMaxPx != null ? `${Math.max(0, lineMaxPx - 8)}px` : undefined,
+          bottom: lineMaxPx == null ? 8 : undefined,
+        }}
       />
       <div
         aria-hidden
         className="absolute left-3 sm:left-4 top-2 w-[2px]"
         style={{
           backgroundColor: COLORS.cyan,
-          height: `calc(${lineHeight}% - 4px)`,
-          maxHeight: "calc(100% - 4px)",
+          height:
+            lineMaxPx != null
+              ? `${Math.max(0, (lineHeight / 100) * (lineMaxPx - 8))}px`
+              : `calc(${lineHeight}% - 4px)`,
+          maxHeight: lineMaxPx != null ? `${Math.max(0, lineMaxPx - 8)}px` : "calc(100% - 4px)",
           transition: `height 200ms ${EASE}`,
         }}
       />
