@@ -740,7 +740,7 @@ function Index() {
           <p className="mt-8 text-left text-sm text-white/60" data-reveal>
             *Ainda na graduação? Fale com nosso time para saber se você já pode começar.
           </p>
-          <div className="mt-8" data-reveal>
+          <div className="mt-8 flex justify-center" data-reveal>
             <a
               href="https://wa.me/"
               target="_blank"
@@ -748,7 +748,7 @@ function Index() {
               className="inline-block rounded-full px-8 py-4 text-base transition-transform hover:scale-105"
               style={{ backgroundColor: COLORS.lime, color: COLORS.bg, fontWeight: 900 }}
             >
-              Falar com um consultor
+              Falar com um Consultor Smart
             </a>
           </div>
           </div>
