@@ -143,12 +143,12 @@ function FadeInCard({
 
 function ImpactStats() {
   const cards = [
-    { Icon: GraduationCap, value: "+5.000", label: "Alunos transformados", color: COLORS.cyan },
-    { Icon: Handshake, value: "+200", label: "Clientes atendidos", color: COLORS.lime },
-    { Icon: Trophy, value: "8", label: "Anos de operação", color: COLORS.red },
-    { Icon: Globe, value: "4", label: "Países alcançados", color: COLORS.lime },
-    { Icon: Users, value: "14", label: "Profissões diferentes na comunidade", color: COLORS.cyan },
-    { Icon: BookOpen, value: "31", label: "Cursos gratuitos já entregues", color: COLORS.lime },
+    { value: "+5.000", label: "Alunos transformados" },
+    { value: "+200", label: "Clientes atendidos" },
+    { value: "8", label: "Anos de operação" },
+    { value: "4", label: "Países alcançados" },
+    { value: "14", label: "Profissões diferentes na comunidade" },
+    { value: "31", label: "Cursos gratuitos já entregues" },
   ];
 
   return (
@@ -162,18 +162,17 @@ function ImpactStats() {
       </h3>
 
       <div className="mx-auto mt-12 w-full max-w-[1200px]">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
           {cards.map((c, i) => (
             <FadeInCard
               key={c.label}
               delay={i * 100}
-              className="rounded-2xl px-6 py-10 sm:px-8 sm:py-12 text-center flex flex-col items-center"
-              style={{ backgroundColor: COLORS.bgAlt }}
+              className="text-center flex flex-col items-center justify-center"
+              style={{ backgroundColor: COLORS.bgAlt, borderRadius: 16, padding: 40 }}
             >
-              <c.Icon size={48} strokeWidth={1.5} color={c.color} aria-hidden />
               <span
-                className="mt-5 block text-5xl sm:text-6xl leading-none"
-                style={{ color: c.color, fontWeight: 900 }}
+                className="block text-5xl sm:text-6xl leading-none"
+                style={{ color: COLORS.cyan, fontWeight: 900 }}
               >
                 {c.value}
               </span>
@@ -186,26 +185,6 @@ function ImpactStats() {
             </FadeInCard>
           ))}
         </div>
-
-        <FadeInCard
-          delay={cards.length * 100}
-          className="mt-4 rounded-2xl px-6 py-10 sm:px-8 sm:py-12 text-center flex flex-col items-center"
-          style={{ backgroundColor: COLORS.bg, border: `2px solid ${COLORS.lime}` }}
-        >
-          <TrendingUp size={56} strokeWidth={1.5} color={COLORS.cyan} aria-hidden />
-          <p className="mt-5 text-base sm:text-lg" style={{ color: COLORS.text }}>
-            Alunos faturando de
-          </p>
-          <p
-            className="my-3 text-6xl sm:text-7xl lg:text-8xl leading-none"
-            style={{ color: COLORS.cyan, fontWeight: 900 }}
-          >
-            R$ 10k a R$ 40k
-          </p>
-          <p className="text-base sm:text-lg" style={{ color: COLORS.text }}>
-            por mês
-          </p>
-        </FadeInCard>
       </div>
     </div>
   );
