@@ -9,6 +9,7 @@ import logoUnypublica from "@/assets/logo-unypublica.png";
 import qrCodeEmec from "@/assets/qr-code-emec.png";
 import alunaAlice from "@/assets/aluna-alice.jpeg";
 import alunaLivia from "@/assets/aluna-livia.png";
+import alunaLunearane from "@/assets/aluna-lunearane.jpg";
 import { TopNav } from "@/components/TopNav";
 import newsPoder360 from "@/assets/news-poder360.png";
 import newsExame from "@/assets/news-exame.png";
@@ -867,7 +868,12 @@ function Index() {
                 quote:
                   "Eu era refém de clínica e em menos de um ano já consegui atingir o que eu nem imaginava: abri a minha própria empresa, trabalho para mim mesma e faço os meus próprios horários. O meu maior medo era não dar conta, mas após aplicar o método eu conquistei confiança e consegui me estabilizar. Agora, me sinto segura e totalmente realizada pessoal e financeiramente.",
               },
-              { name: "Nome do Aluno", photo: null, quote: "Depoimento em breve" },
+              {
+                name: "Lunearane",
+                photo: alunaLunearane,
+                quote:
+                  "Sempre tive um pouco de receio de conversar com as pessoas, interagir e expressar minha opinião. Graças aos conteúdos do curso, desenvolvi habilidades de comunicação e aprimorei minha capacidade de interagir de forma assertiva. O método também me abriu os olhos para outros campos em que podemos atuar, por isso pude expandir meus negócios e, além da RT, ofereço consultoria de alimentos para supermercados.",
+              },
             ].map((t, idx) => {
               const isOpen = openTestimonial === idx;
               return (
