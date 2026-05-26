@@ -185,7 +185,7 @@ function Index() {
               />
             </div>
             <div className="flex w-full justify-center">
-              <CTAButton>Fazer Pré-Inscrição</CTAButton>
+              <CTAButton>Fazer minha Pré-Inscrição</CTAButton>
             </div>
           </div>
         </div>
@@ -359,7 +359,7 @@ function Index() {
             ))}
           </div>
           <div className="mt-12 flex justify-center" data-reveal>
-            <CTAButton>Fazer Pré-Inscrição</CTAButton>
+            <CTAButton>Fazer minha Pré-Inscrição</CTAButton>
           </div>
         </div>
       </section>
@@ -492,7 +492,7 @@ function Index() {
             Alimentos.
           </p>
           <div className="mt-8 flex justify-center" data-reveal>
-            <CTAButton>Fazer Pré-Inscrição</CTAButton>
+            <CTAButton>Fazer minha Pré-Inscrição</CTAButton>
           </div>
         </div>
       </section>
