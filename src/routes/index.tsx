@@ -549,7 +549,7 @@ function Index() {
     >
       <TopNav />
       {/* 1. HERO */}
-      <section className="relative w-full overflow-hidden" style={{ backgroundColor: COLORS.bg, minHeight: "100vh" }}>
+      <section className="relative w-full overflow-hidden" style={{ backgroundColor: COLORS.bg, minHeight: "100vh", borderTop: `3px solid ${COLORS.lime}` }}>
         {/* Camadas de atmosfera */}
         <div
           aria-hidden
