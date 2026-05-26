@@ -301,7 +301,9 @@ function JourneyTimeline() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [lineHeight, setLineHeight] = useState(0);
   const [visible, setVisible] = useState<boolean[]>(() => JOURNEY_ITEMS.map(() => false));
+  const [active, setActive] = useState<boolean[]>(() => JOURNEY_ITEMS.map(() => false));
   const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
+  const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
   useEffect(() => {
     const onScroll = () => {
@@ -315,6 +317,25 @@ function JourneyTimeline() {
       const range = end - start;
       const p = Math.min(1, Math.max(0, -start / range));
       setLineHeight(p * 100);
+
+      // Sincroniza estado ativo dos marcadores com a frente da linha
+      const lineFrontPx = (p * total * 100) / 100; // px a partir do top do container
+      const containerTop = rect.top;
+      setActive((prev) => {
+        let changed = false;
+        const next = prev.slice();
+        itemRefs.current.forEach((node, idx) => {
+          if (!node) return;
+          const r = node.getBoundingClientRect();
+          const itemCenter = r.top - containerTop + r.height / 2;
+          const isActive = lineFrontPx >= itemCenter;
+          if (isActive !== next[idx]) {
+            next[idx] = isActive;
+            changed = true;
+          }
+        });
+        return changed ? next : prev;
+      });
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -340,7 +361,7 @@ function JourneyTimeline() {
                   next[idx] = true;
                   return next;
                 });
-              }, idx * 150);
+              }, idx * 80);
               io.disconnect();
             }
           });
@@ -355,6 +376,12 @@ function JourneyTimeline() {
 
   return (
     <div ref={containerRef} className="relative mx-auto mt-10 w-full max-w-[700px] pl-10 sm:pl-12">
+      <style>{`
+        @keyframes journeyFinalPulse {
+          0%, 100% { box-shadow: 0 0 0 4px rgba(191,246,12,0.25), 0 0 16px rgba(191,246,12,0.55); }
+          50% { box-shadow: 0 0 0 8px rgba(191,246,12,0), 0 0 24px rgba(191,246,12,0.65); }
+        }
+      `}</style>
       <div
         aria-hidden
         className="absolute left-3 sm:left-4 top-2 bottom-2 w-[2px]"
@@ -367,13 +394,14 @@ function JourneyTimeline() {
           backgroundColor: COLORS.cyan,
           height: `calc(${lineHeight}% - 4px)`,
           maxHeight: "calc(100% - 4px)",
-          transition: "height 120ms linear",
+          transition: `height 200ms ${EASE}`,
         }}
       />
       <ul className="flex flex-col" style={{ gap: 40 }}>
         {JOURNEY_ITEMS.map((text, idx) => {
           const isLast = idx === JOURNEY_ITEMS.length - 1;
           const size = isLast ? 20 : 12;
+          const isActive = active[idx];
           return (
             <li
               key={text}
@@ -382,9 +410,9 @@ function JourneyTimeline() {
               }}
               className="relative flex items-center"
               style={{
-                opacity: visible[idx] ? 1 : 0,
-                transform: visible[idx] ? "translateX(0)" : "translateX(-16px)",
-                transition: "opacity 600ms ease-out, transform 600ms ease-out",
+                opacity: visible[idx] ? 1 : 0.35,
+                transform: visible[idx] ? "translateX(0)" : "translateX(-8px)",
+                transition: `opacity 600ms ${EASE}, transform 600ms ${EASE}`,
               }}
             >
               <span
@@ -394,10 +422,14 @@ function JourneyTimeline() {
                   left: `calc(${isLast ? "1rem" : "0.75rem"} - ${size / 2}px + 1px)`,
                   width: size,
                   height: size,
-                  backgroundColor: COLORS.lime,
-                  boxShadow: isLast
-                    ? "0 0 0 4px rgba(191,246,12,0.25), 0 0 16px rgba(191,246,12,0.55)"
-                    : undefined,
+                  backgroundColor: isActive ? COLORS.lime : "rgba(191,246,12,0.25)",
+                  transform: isActive ? "scale(1)" : "scale(0.9)",
+                  transition: `background-color 300ms ${EASE}, transform 300ms ${EASE}, box-shadow 300ms ${EASE}`,
+                  boxShadow:
+                    isLast && isActive
+                      ? "0 0 0 4px rgba(191,246,12,0.25), 0 0 16px rgba(191,246,12,0.55)"
+                      : undefined,
+                  animation: isLast && isActive ? "journeyFinalPulse 2s ease-in-out infinite" : undefined,
                 }}
               />
               <span
