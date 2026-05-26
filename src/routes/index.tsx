@@ -102,121 +102,7 @@ function Check() {
   );
 }
 
-function CountUp({ end, color, prefix = "", suffix = "" }: { end: number; color: string; prefix?: string; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    let started = false;
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting && !started) {
-            started = true;
-            const duration = 1600;
-            const start = performance.now();
-            const step = (now: number) => {
-              const p = Math.min((now - start) / duration, 1);
-              const eased = 1 - Math.pow(1 - p, 3);
-              const v = Math.floor(eased * end);
-              el.textContent = `${prefix}${v.toLocaleString("pt-BR")}${suffix}`;
-              if (p < 1) requestAnimationFrame(step);
-              else el.textContent = `${prefix}${end.toLocaleString("pt-BR")}${suffix}`;
-            };
-            requestAnimationFrame(step);
-            io.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.4 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [end, prefix, suffix]);
-  return (
-    <span
-      ref={ref}
-      style={{ color, fontWeight: 900 }}
-      className="block text-5xl sm:text-6xl lg:text-7xl leading-none"
-    >
-      {prefix}0{suffix}
-    </span>
-  );
-}
-
-function useFadeIn(delay: number) {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    el.style.opacity = "0";
-    el.style.transition = `opacity 600ms ease-out ${delay}ms`;
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            el.style.opacity = "1";
-            io.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.2 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [delay]);
-  return ref;
-}
-
-function ImpactCard({ end, prefix, suffix, label, color, delay }: { end: number; prefix?: string; suffix?: string; label: string; color: string; delay: number }) {
-  const ref = useFadeIn(delay);
-  return (
-    <div
-      ref={ref}
-      className="w-full rounded-2xl px-8 py-10 sm:px-12 sm:py-12 text-center"
-      style={{ backgroundColor: COLORS.bgAlt }}
-    >
-      <CountUp end={end} prefix={prefix} suffix={suffix} color={color} />
-      <p className="mt-4 text-base sm:text-lg" style={{ color: COLORS.text }}>
-        {label}
-      </p>
-    </div>
-  );
-}
-
-function RevenueCard({ delay }: { delay: number }) {
-  const ref = useFadeIn(delay);
-  return (
-    <div
-      ref={ref}
-      className="w-full rounded-2xl px-8 py-10 sm:px-12 sm:py-12 text-center"
-      style={{ backgroundColor: COLORS.bgAlt, border: `2px solid ${COLORS.lime}` }}
-    >
-      <p className="text-base sm:text-lg" style={{ color: COLORS.text }}>
-        Alunos faturando de
-      </p>
-      <p
-        className="my-3 text-6xl sm:text-7xl lg:text-8xl leading-none"
-        style={{ color: COLORS.cyan, fontWeight: 900 }}
-      >
-        R$ 10k a R$ 40k
-      </p>
-      <p className="text-base sm:text-lg" style={{ color: COLORS.text }}>
-        por mês
-      </p>
-    </div>
-  );
-}
-
 function ImpactStats() {
-  const cards = [
-    { end: 5000, prefix: "+", label: "Alunos transformados", color: COLORS.cyan },
-    { end: 200, prefix: "+", label: "Clientes atendidos", color: COLORS.lime },
-    { end: 8, label: "Anos de operação", color: COLORS.red },
-    { end: 4, label: "Países alcançados", color: COLORS.lime },
-    { end: 14, label: "Profissões diferentes na comunidade", color: COLORS.cyan },
-    { end: 31, label: "Cursos gratuitos já entregues", color: COLORS.lime },
-  ];
   return (
     <div className="mt-20">
       <h3
@@ -227,18 +113,15 @@ function ImpactStats() {
         Nosso impacto em números
       </h3>
 
-      <div className="mx-auto mt-12 flex w-full max-w-[800px] flex-col gap-6">
-        {cards.map((c, i) => (
-          <ImpactCard
-            key={c.label}
-            end={c.end}
-            prefix={c.prefix}
-            label={c.label}
-            color={c.color}
-            delay={i * 150}
-          />
-        ))}
-        <RevenueCard delay={cards.length * 150} />
+      <div className="mx-auto mt-12 w-full max-w-5xl">
+        <img
+          src={impactoNumeros}
+          alt="Nosso impacto em números: +5.000 alunos transformados, +200 clientes atendidos, 31 cursos gratuitos, 4 países alcançados, 14 profissões na comunidade, 8 anos de operação, alunos faturando de R$ 10k a R$ 40k por mês"
+          loading="lazy"
+          width={1536}
+          height={1024}
+          className="w-full h-auto rounded-2xl"
+        />
       </div>
     </div>
   );
