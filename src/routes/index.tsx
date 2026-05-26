@@ -375,7 +375,7 @@ function JourneyTimeline() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative mx-auto mt-10 w-full max-w-[700px] pl-10 sm:pl-12">
+    <div ref={containerRef} className="relative mx-auto mt-10 w-full max-w-[900px] pl-10 sm:pl-12">
       <style>{`
         @keyframes journeyFinalPulse {
           0%, 100% { box-shadow: 0 0 0 4px rgba(191,246,12,0.25), 0 0 16px rgba(191,246,12,0.55); }
@@ -433,8 +433,8 @@ function JourneyTimeline() {
                 }}
               />
               <span
-                className="text-base sm:text-lg"
-                style={{ color: isLast ? COLORS.lime : "#FFFFFF", fontWeight: isLast ? 600 : 400 }}
+                className="text-lg sm:text-xl"
+                style={{ color: isLast ? COLORS.lime : "#FFFFFF", fontWeight: 600 }}
               >
                 {text}
               </span>
