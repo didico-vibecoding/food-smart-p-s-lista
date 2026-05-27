@@ -22,7 +22,7 @@ import professoraMarieleZanuzzo from "@/assets/professora-mariele-zanuzzo.png";
 import professoraCamilaBonatto from "@/assets/professora-camila-bonatto.png";
 import { TopNav } from "@/components/TopNav";
 import { useUtmParams } from "@/hooks/use-utm-params";
-import { buildWaitlistUrl } from "@/lib/waitlist-url";
+import { buildWaitlistUrl, getWaitlistUrlNow } from "@/lib/waitlist-url";
 import newsPoder360 from "@/assets/news-poder360.png";
 import newsExame from "@/assets/news-exame.png";
 import newsFolha from "@/assets/news-folha.png";
@@ -173,11 +173,20 @@ function useReveal() {
 function CTAButton({ children, className = "", href }: { children: React.ReactNode; className?: string; href?: string }) {
   const utms = useUtmParams();
   const waitlistUrl = href ?? buildWaitlistUrl(utms);
+  // Recalcula UTMs imediatamente antes do clique navegar, evitando perda
+  // por hidratação tardia ou navegação interna com âncoras.
+  const refreshHref = (e: React.SyntheticEvent<HTMLAnchorElement>) => {
+    if (href) return;
+    e.currentTarget.href = getWaitlistUrlNow();
+  };
   return (
     <a
       href={waitlistUrl}
       target="_blank"
       rel="noopener noreferrer"
+      onPointerDown={refreshHref}
+      onFocus={refreshHref}
+      onMouseEnter={refreshHref}
       className={`inline-block rounded-full px-8 py-4 text-base sm:text-lg shadow-lg transition-transform hover:scale-[1.03] ${className}`}
       style={{ backgroundColor: COLORS.lime, color: COLORS.bg, fontWeight: 900 }}
     >
