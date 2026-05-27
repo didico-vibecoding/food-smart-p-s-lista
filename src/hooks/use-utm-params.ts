@@ -24,14 +24,25 @@ function readFromUrl(): TrackedParams {
   return found;
 }
 
+function readInitial(): TrackedParams {
+  if (typeof window === "undefined") return {};
+  const fromUrl = readFromUrl();
+  const fromStorage = readFromStorage();
+  return { ...fromStorage, ...fromUrl };
+}
+
 export function useUtmParams(): TrackedParams {
-  const [params, setParams] = useState<TrackedParams>({});
+  // Já lê no primeiro render do cliente para que o href dos CTAs
+  // saia correto sem depender do useEffect.
+  const [params, setParams] = useState<TrackedParams>(readInitial);
 
   useEffect(() => {
     const fromUrl = readFromUrl();
     const fromStorage = readFromStorage();
-    // URL atual tem prioridade sobre o que está salvo
     const merged: TrackedParams = { ...fromStorage, ...fromUrl };
+
+    // Persiste em sessionStorage quando há UTMs na URL atual,
+    // para sobreviver à navegação entre âncoras/páginas.
     if (Object.keys(fromUrl).length > 0) {
       try {
         window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
@@ -39,7 +50,13 @@ export function useUtmParams(): TrackedParams {
         // ignore
       }
     }
-    setParams(merged);
+
+    // Só atualiza o estado se mudou (evita re-render desnecessário).
+    setParams((prev) => {
+      const prevStr = JSON.stringify(prev);
+      const nextStr = JSON.stringify(merged);
+      return prevStr === nextStr ? prev : merged;
+    });
   }, []);
 
   return params;
