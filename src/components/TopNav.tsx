@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import logoFoodSmart from "@/assets/logo-food-smart.png";
+import { useUtmParams } from "@/hooks/use-utm-params";
+import { buildWaitlistUrl } from "@/lib/waitlist-url";
 
 const COLORS = {
   bg: "#1D223B",
@@ -19,12 +21,14 @@ const SECTIONS = [
   { id: "pre-inscricao", label: "Pré-Inscrição" },
 ];
 
-const WAITLIST_URL = "https://posrtconsultoria.yayforms.link/NdJRJLr?utm_source={{site_source_name}}&utm_campaign={{campaign.name}}&utm_medium={{adset.name}}&utm_content={{ad.name}}&utm_term=teste-xxx";
+
 
 export function TopNav() {
   const [visible, setVisible] = useState(false);
   const [active, setActive] = useState<string>("");
   const [open, setOpen] = useState(false);
+  const utms = useUtmParams();
+  const WAITLIST_URL = useMemo(() => buildWaitlistUrl(utms), [utms]);
 
   useEffect(() => {
     const onScroll = () => {
