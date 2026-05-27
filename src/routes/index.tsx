@@ -14,6 +14,12 @@ import professoraPaulaEloize from "@/assets/professora-paula-eloize.png";
 import professorGregoriFagundes from "@/assets/professor-gregori-fagundes.png";
 import professoraFabianaLeal from "@/assets/professora-fabiana-leal.png";
 import professoraGabrielaAuth from "@/assets/professora-gabriela-auth.png";
+import professoraAlineAssis from "@/assets/professora-aline-assis.png";
+import professoraGabrielaManfredini from "@/assets/professora-gabriela-manfredini.png";
+import professoraGiovannaPaiosin from "@/assets/professora-giovanna-paiosin.png";
+import professoraIsabelleSgorla from "@/assets/professora-isabelle-sgorla.png";
+import professoraMarieleZanuzzo from "@/assets/professora-mariele-zanuzzo.png";
+import professoraCamilaBonatto from "@/assets/professora-camila-bonatto.png";
 import { TopNav } from "@/components/TopNav";
 import newsPoder360 from "@/assets/news-poder360.png";
 import newsExame from "@/assets/news-exame.png";
@@ -558,10 +564,16 @@ function NewsCarousel() {
 type Teacher = { name: string; role?: string; photo?: string | null };
 
 const TEACHERS: Teacher[] = [
-  { name: "Paula Eloize", role: "", photo: professoraPaulaEloize },
-  { name: "Grégori Fagundes", role: "", photo: professorGregoriFagundes },
-  { name: "Fabiana Leal", role: "", photo: professoraFabianaLeal },
-  { name: "Gabriela Auth", role: "", photo: professoraGabrielaAuth },
+  { name: "Paula Eloize", role: "Indústria, supermercados e serviços de alimentação", photo: professoraPaulaEloize },
+  { name: "Grégori Fagundes", role: "Projetos e obras em empresas de alimentos", photo: professorGregoriFagundes },
+  { name: "Fabiana Leal", role: "Registro no PGA-SIGSIF", photo: professoraFabianaLeal },
+  { name: "Gabriela Auth", role: "RT e Consultoria em pescados", photo: professoraGabrielaAuth },
+  { name: "Aline Assis", role: "Rotulagem", photo: professoraAlineAssis },
+  { name: "Gabriela Manfredini", role: "Alimentação animal", photo: professoraGabrielaManfredini },
+  { name: "Giovanna Paiosin", role: "Análise sensorial e validade de alimentos", photo: professoraGiovannaPaiosin },
+  { name: "Isabelle Sgorla", role: "Implementação de serviços de inspeção", photo: professoraIsabelleSgorla },
+  { name: "Mariéle Zanuzzo", role: "Implementação de serviços de inspeção", photo: professoraMarieleZanuzzo },
+  { name: "Camila Bonatto", role: "RT e Consultoria em leite, ovos e mel", photo: professoraCamilaBonatto },
 ];
 
 function TeachersCarousel() {
@@ -646,7 +658,7 @@ function TeachersCarousel() {
                   {t.name}
                 </div>
                 {t.role ? (
-                  <div className="mt-1 text-sm" style={{ fontFamily: "Poppins, sans-serif", fontWeight: 400, color: COLORS.cyan }}>
+                  <div className="mt-1 text-sm" style={{ fontFamily: "Poppins, sans-serif", fontWeight: 400, color: COLORS.text }}>
                     {t.role}
                   </div>
                 ) : null}
