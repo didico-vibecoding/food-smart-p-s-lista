@@ -561,7 +561,7 @@ function NewsCarousel() {
   );
 }
 
-type Teacher = { name: string; role?: string; photo?: string | null };
+type Teacher = { name: string; role?: string; photo?: string | null; zoom?: number };
 
 const TEACHERS: Teacher[] = [
   { name: "Paula Eloize", role: "Indústria, supermercados e serviços de alimentação", photo: professoraPaulaEloize },
@@ -571,7 +571,7 @@ const TEACHERS: Teacher[] = [
   { name: "Aline Assis", role: "Rotulagem", photo: professoraAlineAssis },
   { name: "Gabriela Manfredini", role: "Alimentação animal", photo: professoraGabrielaManfredini },
   { name: "Giovanna Paiosin", role: "Análise sensorial e validade de alimentos", photo: professoraGiovannaPaiosin },
-  { name: "Isabelle Sgorla", role: "Implementação de serviços de inspeção", photo: professoraIsabelleSgorla },
+  { name: "Isabelle Sgorla", role: "Implementação de serviços de inspeção", photo: professoraIsabelleSgorla, zoom: 1.6 },
   { name: "Mariéle Zanuzzo", role: "Implementação de serviços de inspeção", photo: professoraMarieleZanuzzo },
   { name: "Camila Bonatto", role: "RT e Consultoria em leite, ovos e mel", photo: professoraCamilaBonatto },
 ];
@@ -670,7 +670,7 @@ function TeachersCarousel() {
                       src={t.photo}
                       alt={t.name}
                       className="h-full w-full"
-                      style={{ objectFit: "cover", objectPosition: "top center" }}
+                      style={{ objectFit: "cover", objectPosition: "top center", transform: `scale(${t.zoom ?? 1})`, transformOrigin: "top center" }}
                     />
                   )}
                 </div>
