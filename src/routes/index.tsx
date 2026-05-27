@@ -90,6 +90,35 @@ export const Route = createFileRoute("/")({
             courseMode: "online",
             inLanguage: "pt-BR",
           },
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "5",
+            bestRating: "5",
+            ratingCount: "3",
+          },
+          review: [
+            {
+              "@type": "Review",
+              author: { "@type": "Person", name: "Alice" },
+              reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+              reviewBody:
+                "O diferencial desse método é que ele vai além da base teórica, ensinando não apenas o conhecimento técnico, mas também como se posicionar e se portar profissionalmente.",
+            },
+            {
+              "@type": "Review",
+              author: { "@type": "Person", name: "Livia" },
+              reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+              reviewBody:
+                "Eu era refém de clínica e em menos de um ano abri minha própria empresa, trabalho para mim mesma e faço meus próprios horários.",
+            },
+            {
+              "@type": "Review",
+              author: { "@type": "Person", name: "Lunearane" },
+              reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+              reviewBody:
+                "Desenvolvi habilidades de comunicação e expandi meus negócios — além da RT, ofereço consultoria de alimentos para supermercados.",
+            },
+          ],
         }),
       },
     ],
