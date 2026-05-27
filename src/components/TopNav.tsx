@@ -3,7 +3,7 @@ import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import logoFoodSmart from "@/assets/logo-food-smart.png";
 import { useUtmParams } from "@/hooks/use-utm-params";
-import { buildWaitlistUrl } from "@/lib/waitlist-url";
+import { buildWaitlistUrl, getWaitlistUrlNow } from "@/lib/waitlist-url";
 
 const COLORS = {
   bg: "#1D223B",
@@ -133,6 +133,9 @@ export function TopNav() {
           href={WAITLIST_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onPointerDown={(e) => { e.currentTarget.href = getWaitlistUrlNow(); }}
+          onFocus={(e) => { e.currentTarget.href = getWaitlistUrlNow(); }}
+          onMouseEnter={(e) => { e.currentTarget.href = getWaitlistUrlNow(); }}
           className="hidden rounded-full px-5 py-2.5 text-sm shadow-md transition-transform hover:scale-[1.03] md:inline-block"
           style={{ backgroundColor: COLORS.red, color: COLORS.text, fontWeight: 700 }}
         >
@@ -186,6 +189,7 @@ export function TopNav() {
                 href={WAITLIST_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onPointerDown={(e) => { e.currentTarget.href = getWaitlistUrlNow(); }}
                 onClick={() => setOpen(false)}
                 className="mt-8 block rounded-full px-5 py-3 text-center text-base shadow-md"
                 style={{ backgroundColor: COLORS.red, color: COLORS.text, fontWeight: 700 }}
