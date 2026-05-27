@@ -38,7 +38,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Pós-Graduação da Food Smart em Responsabilidade Técnica e Consultoria de Alimentos. Reconhecida pelo MEC, com formação prática para nutricionistas. Faça sua pré-inscrição.",
+          "Pós-Graduação Food Smart em RT e Consultoria de Alimentos. Reconhecida pelo MEC, formação prática para nutricionistas. Faça sua pré-inscrição.",
       },
       {
         name: "keywords",
