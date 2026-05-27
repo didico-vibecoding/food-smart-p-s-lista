@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://pos-rt-consultoria.lovable.app/sitemap.xml
