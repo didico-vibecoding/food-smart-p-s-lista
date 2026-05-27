@@ -72,20 +72,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Food Smart — Pós-Graduação em RT e Consultoria de Alimentos" },
+      {
+        name: "description",
+        content:
+          "Pós-Graduação em Responsabilidade Técnica e Consultoria de Alimentos da Food Smart. Formação prática para nutricionistas atuarem como RT e consultores no setor de alimentos. Reconhecida pelo MEC.",
+      },
+      { name: "robots", content: "index, follow" },
+      { property: "og:site_name", content: "Food Smart" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:locale", content: "pt_BR" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "icon", href: "/favicon.ico" },
     ],
     scripts: [
       {
@@ -110,7 +114,7 @@ fbq('track', 'PageView');`,
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
