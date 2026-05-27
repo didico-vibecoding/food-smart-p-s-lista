@@ -38,7 +38,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Pós-Graduação da Food Smart em Responsabilidade Técnica e Consultoria de Alimentos. Reconhecida pelo MEC, com formação prática para nutricionistas. Faça sua pré-inscrição.",
+          "Pós-Graduação Food Smart em RT e Consultoria de Alimentos. Reconhecida pelo MEC, formação prática para nutricionistas. Faça sua pré-inscrição.",
       },
       {
         name: "keywords",
@@ -90,6 +90,35 @@ export const Route = createFileRoute("/")({
             courseMode: "online",
             inLanguage: "pt-BR",
           },
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "5",
+            bestRating: "5",
+            ratingCount: "3",
+          },
+          review: [
+            {
+              "@type": "Review",
+              author: { "@type": "Person", name: "Alice" },
+              reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+              reviewBody:
+                "O diferencial desse método é que ele vai além da base teórica, ensinando não apenas o conhecimento técnico, mas também como se posicionar e se portar profissionalmente.",
+            },
+            {
+              "@type": "Review",
+              author: { "@type": "Person", name: "Livia" },
+              reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+              reviewBody:
+                "Eu era refém de clínica e em menos de um ano abri minha própria empresa, trabalho para mim mesma e faço meus próprios horários.",
+            },
+            {
+              "@type": "Review",
+              author: { "@type": "Person", name: "Lunearane" },
+              reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+              reviewBody:
+                "Desenvolvi habilidades de comunicação e expandi meus negócios — além da RT, ofereço consultoria de alimentos para supermercados.",
+            },
+          ],
         }),
       },
     ],
@@ -1083,7 +1112,7 @@ function Index() {
                     style={{ backgroundColor: COLORS.bgAlt, border: `2px solid ${COLORS.cyan}` }}
                   >
                     {t.photo && (
-                      <img src={t.photo} alt={t.name} className="h-full w-full object-cover" />
+                      <img src={t.photo} alt={`Depoimento da aluna ${t.name}`} className="h-full w-full object-cover" />
                     )}
                   </div>
                   <div className="mt-4 text-center text-base" style={{ fontWeight: 700 }}>

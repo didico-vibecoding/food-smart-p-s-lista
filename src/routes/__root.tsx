@@ -72,11 +72,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Food Smart — Pós-Graduação em RT e Consultoria de Alimentos" },
+      { title: "Food Smart — Pós em RT e Consultoria de Alimentos" },
       {
         name: "description",
         content:
-          "Pós-Graduação em Responsabilidade Técnica e Consultoria de Alimentos da Food Smart. Formação prática para nutricionistas atuarem como RT e consultores no setor de alimentos. Reconhecida pelo MEC.",
+          "Pós-Graduação Food Smart em RT e Consultoria de Alimentos. Formação prática para nutricionistas. Reconhecida pelo MEC.",
       },
       { name: "robots", content: "index, follow" },
       { property: "og:site_name", content: "Food Smart" },
@@ -103,6 +103,25 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '203903824797247');
 fbq('track', 'PageView');`,
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Food Smart",
+          url: "https://pos-rt-consultoria.lovable.app",
+          sameAs: ["https://foodsmart.com.br"],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Food Smart",
+          url: "https://pos-rt-consultoria.lovable.app",
+        }),
       },
     ],
   }),
