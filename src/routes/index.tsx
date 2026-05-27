@@ -687,21 +687,6 @@ function TeachersCarousel() {
           ))}
         </div>
       </div>
-      <div className="mt-6 flex justify-center gap-2">
-        {Array.from({ length: total }).map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => {
-              setAnimate(true);
-              setIndex(i);
-            }}
-            aria-label={`Ir para slide ${i + 1}`}
-            className="h-2.5 w-2.5 rounded-full transition-colors"
-            style={{ backgroundColor: activeBullet === i ? COLORS.lime : COLORS.bgAlt }}
-          />
-        ))}
-      </div>
     </div>
   );
 }
