@@ -21,6 +21,8 @@ import professoraIsabelleSgorla from "@/assets/professora-isabelle-sgorla.png";
 import professoraMarieleZanuzzo from "@/assets/professora-mariele-zanuzzo.png";
 import professoraCamilaBonatto from "@/assets/professora-camila-bonatto.png";
 import { TopNav } from "@/components/TopNav";
+import { useUtmParams } from "@/hooks/use-utm-params";
+import { buildWaitlistUrl } from "@/lib/waitlist-url";
 import newsPoder360 from "@/assets/news-poder360.png";
 import newsExame from "@/assets/news-exame.png";
 import newsFolha from "@/assets/news-folha.png";
@@ -126,7 +128,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WAITLIST_URL = "https://posrtconsultoria.yayforms.link/NdJRJLr?utm_source={{site_source_name}}&utm_campaign={{campaign.name}}&utm_medium={{adset.name}}&utm_content={{ad.name}}&utm_term=teste-xxx";
+
 const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5541995896140&text=Ol%C3%A1%2C%20estou%20na%20p%C3%A1gina%20da%20P%C3%B3s%20e%20preciso%20de%20ajuda";
 
 const COLORS = {
@@ -169,9 +171,11 @@ function useReveal() {
 }
 
 function CTAButton({ children, className = "", href }: { children: React.ReactNode; className?: string; href?: string }) {
+  const utms = useUtmParams();
+  const waitlistUrl = href ?? buildWaitlistUrl(utms);
   return (
     <a
-      href={href ?? WAITLIST_URL}
+      href={waitlistUrl}
       target="_blank"
       rel="noopener noreferrer"
       className={`inline-block rounded-full px-8 py-4 text-base sm:text-lg shadow-lg transition-transform hover:scale-[1.03] ${className}`}

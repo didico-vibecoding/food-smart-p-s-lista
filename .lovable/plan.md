@@ -1,23 +1,32 @@
-## Objetivo
+# Propagação de UTMs para os CTAs do Yayforms
 
-Aproximar o rosto da Isabelle Sgorla dentro do card circular do carrossel — hoje a foto original mostra o corpo inteiro, então o rosto fica pequeno dentro do círculo de 96px.
+Hoje os botões "Fazer minha Pré-Inscrição" apontam para uma URL fixa do Yayforms com placeholders do Meta Ads (`{{site_source_name}}`, `{{campaign.name}}`, etc.). Esses placeholders **só são substituídos quando o clique vem direto de um anúncio do Meta** — se o usuário chega ao site via link com `?utm_source=...&utm_campaign=...`, navega pela página e depois clica no CTA, esses UTMs são perdidos e o Yayforms recebe literalmente o texto `{{site_source_name}}`.
 
-## Abordagem
+## O que vou implementar
 
-Aplicar um zoom via CSS apenas na foto da Isabelle, sem alterar o arquivo de imagem original e sem afetar nenhum outro card.
+### 1. Captura e persistência dos UTMs
+- Criar um hook `useUtmParams` (em `src/hooks/use-utm-params.ts`) que:
+  - Na primeira visita, lê da URL os parâmetros: `utm_source`, `utm_campaign`, `utm_medium`, `utm_content`, `utm_term`, e também `fbclid` e `gclid`.
+  - Salva em `sessionStorage` (persiste durante a navegação na aba, sem poluir entre sessões).
+  - Retorna o objeto consolidado dos UTMs presentes.
 
-## Mudança em `src/routes/index.tsx`
+### 2. Helper para montar a URL do Yayforms
+- Criar `src/lib/waitlist-url.ts` exportando `buildWaitlistUrl(utms)`:
+  - Base: `https://posrtconsultoria.yayforms.link/NdJRJLr`
+  - Para cada UTM presente na URL atual/sessionStorage, substitui o valor.
+  - Para os que **não** vieram (ex.: visita orgânica), mantém o placeholder do Meta `{{...}}` para não quebrar o tracking de anúncios pagos. Isso garante: tráfego pago do Meta → Meta substitui; tráfego com UTM próprio → propagamos; tráfego direto → placeholders permanecem (Yayforms simplesmente ignora).
+  - Alternativa que prefiro: se vier UTM próprio, usa o valor; se não vier, remove o parâmetro (mais limpo). **Decisão: manter placeholder do Meta como fallback** porque o link original já foi pensado para Meta Ads.
 
-1. **Tipo `Teacher`** (linha ~558): adicionar campo opcional `zoom?: number` (fator de escala, default 1).
+### 3. Aplicar nos CTAs
+- `src/components/TopNav.tsx`: trocar a constante `WAITLIST_URL` por `buildWaitlistUrl(utms)` calculado via hook (CTA desktop + CTA do menu mobile).
+- `src/routes/index.tsx`: localizar todos os botões/links "Fazer minha Pré-Inscrição" (hero, seção de pré-inscrição, qualquer outro) e usar a mesma URL dinâmica.
 
-2. **Array `TEACHERS`** (linhas ~566–577): adicionar `zoom: 1.6` no objeto da Isabelle Sgorla. Os demais professores ficam sem o campo (zoom = 1, comportamento atual inalterado).
+### 4. Comportamento esperado
+- Usuário acessa `seusite.com/?utm_source=instagram&utm_campaign=lancamento` → clica no CTA → vai para `...yayforms.link/NdJRJLr?utm_source=instagram&utm_campaign=lancamento&utm_medium={{adset.name}}&...`
+- Usuário navega entre âncoras (`#modulos`, `#certificacao`) → UTMs continuam preservados (sessionStorage).
+- Usuário vem de anúncio do Meta → placeholders `{{...}}` são substituídos pelo Meta normalmente.
 
-3. **Render da `<img>`** dentro do `TeachersCarousel` (linhas ~648–655): aplicar `transform: scale(t.zoom ?? 1)` e `transformOrigin: "top center"` no style da imagem. O círculo continua com `overflow: hidden`, então o excesso é cortado e o rosto aparece maior e centralizado no topo.
+## Pontos para confirmar antes de implementar
 
-Valor inicial proposto: **1.6**. Se ficar pouco ou demais, ajusto para 1.4 ou 1.8 numa segunda iteração.
-
-## Fora de escopo
-
-- Não trocar a foto da Isabelle
-- Não mexer em nenhum outro card, no tamanho do círculo, no fundo do card, no autoplay nem no loop infinito
-- Não alterar nenhuma outra seção
+1. **Fallback quando não há UTM próprio**: manter os placeholders `{{site_source_name}}` etc. (preserva tracking do Meta Ads) ou remover os parâmetros vazios (URL mais limpa)?
+2. Quer que eu também capture `fbclid`/`gclid` e envie ao Yayforms (ex.: como `utm_term` ou parâmetro extra), ou só os 5 UTMs padrão?
