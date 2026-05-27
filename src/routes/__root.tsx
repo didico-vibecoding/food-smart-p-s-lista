@@ -72,24 +72,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Food Smart — Pós em RT e Consultoria de Alimentos" },
-      {
-        name: "description",
-        content:
-          "Pós-Graduação Food Smart em RT e Consultoria de Alimentos. Formação prática para nutricionistas. Reconhecida pelo MEC.",
-      },
-      { name: "robots", content: "index, follow" },
-      { property: "og:site_name", content: "Food Smart" },
+      { title: "Pós-graduação em RT e Consultoria de Alimentos" },
+      { name: "description", content: "Faça parte da única pós-graduação voltada à prática da Responsabilidade Técnica e Consultoria de Alimentos!" },
+      { name: "author", content: "Lovable" },
+      { property: "og:title", content: "Pós-graduação em RT e Consultoria de Alimentos" },
+      { property: "og:description", content: "Faça parte da única pós-graduação voltada à prática da Responsabilidade Técnica e Consultoria de Alimentos!" },
       { property: "og:type", content: "website" },
-      { property: "og:locale", content: "pt_BR" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:card", content: "summary" },
+      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Pós-graduação em RT e Consultoria de Alimentos" },
+      { name: "twitter:description", content: "Faça parte da única pós-graduação voltada à prática da Responsabilidade Técnica e Consultoria de Alimentos!" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/21411f3c-e2fc-4b93-8035-a979f07f54b5" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/21411f3c-e2fc-4b93-8035-a979f07f54b5" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico" },
     ],
     scripts: [
       {
@@ -104,25 +104,6 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '203903824797247');
 fbq('track', 'PageView');`,
       },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "Food Smart",
-          url: "https://pos-rt-consultoria.lovable.app",
-          sameAs: ["https://foodsmart.com.br"],
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: "Food Smart",
-          url: "https://pos-rt-consultoria.lovable.app",
-        }),
-      },
     ],
   }),
   shellComponent: RootShell,
@@ -133,7 +114,7 @@ fbq('track', 'PageView');`,
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR">
+    <html lang="en">
       <head>
         <HeadContent />
       </head>
