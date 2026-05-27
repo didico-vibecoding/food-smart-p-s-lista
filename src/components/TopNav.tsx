@@ -19,7 +19,7 @@ const SECTIONS = [
   { id: "pre-inscricao", label: "Pré-Inscrição" },
 ];
 
-const WAITLIST_URL = "#";
+const WAITLIST_URL = "https://posrtconsultoria.yayforms.link/NdJRJLr?utm_source={{site_source_name}}&utm_campaign={{campaign.name}}&utm_medium={{adset.name}}&utm_content={{ad.name}}&utm_term=teste-xxx";
 
 export function TopNav() {
   const [visible, setVisible] = useState(false);
