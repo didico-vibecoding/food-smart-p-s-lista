@@ -58,7 +58,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WAITLIST_URL = "#"; // [LINK DO YAYFORMS]
+const WAITLIST_URL = "https://posrtconsultoria.yayforms.link/NdJRJLr?utm_source={{site_source_name}}&utm_campaign={{campaign.name}}&utm_medium={{adset.name}}&utm_content={{ad.name}}&utm_term=teste-xxx";
 const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5541995896140&text=Ol%C3%A1%2C%20estou%20na%20p%C3%A1gina%20da%20P%C3%B3s%20e%20preciso%20de%20ajuda";
 
 const COLORS = {
@@ -953,7 +953,7 @@ function Index() {
             ))}
           </div>
           <div className="mt-12 flex justify-center" data-reveal>
-            <CTAButton href="https://api.whatsapp.com/send?phone=5541995896140&text=Ol%C3%A1%2C%20quero%20saber%20se%20a%20P%C3%B3s%20%C3%A9%20para%20mim">Fazer minha Pré-Inscrição</CTAButton>
+            <CTAButton>Fazer minha Pré-Inscrição</CTAButton>
           </div>
         </div>
       </section>
