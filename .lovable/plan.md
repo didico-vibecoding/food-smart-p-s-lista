@@ -1,32 +1,18 @@
-# Propagação de UTMs para os CTAs do Yayforms
+Identifiquei três pontos prováveis para a perda de rastreamento:
 
-Hoje os botões "Fazer minha Pré-Inscrição" apontam para uma URL fixa do Yayforms com placeholders do Meta Ads (`{{site_source_name}}`, `{{campaign.name}}`, etc.). Esses placeholders **só são substituídos quando o clique vem direto de um anúncio do Meta** — se o usuário chega ao site via link com `?utm_source=...&utm_campaign=...`, navega pela página e depois clica no CTA, esses UTMs são perdidos e o Yayforms recebe literalmente o texto `{{site_source_name}}`.
+1. **Hidratação/primeiro clique**
+   - Hoje o link depende de estado React (`useUtmParams`). Em alguns cenários, principalmente logo após carregar a página, troca de domínio ou navegação com parâmetros, o CTA pode renderizar/clicar antes do estado estar 100% sincronizado.
 
-## O que vou implementar
+2. **Parâmetros da URL do Lovable/preview**
+   - No preview há parâmetros internos como `__lovable_token`. A lógica atual só lê UTMs específicas, mas vou garantir que ela ignore parâmetros internos e capture UTMs tanto no carregamento inicial quanto no momento exato do clique.
 
-### 1. Captura e persistência dos UTMs
-- Criar um hook `useUtmParams` (em `src/hooks/use-utm-params.ts`) que:
-  - Na primeira visita, lê da URL os parâmetros: `utm_source`, `utm_campaign`, `utm_medium`, `utm_content`, `utm_term`, e também `fbclid` e `gclid`.
-  - Salva em `sessionStorage` (persiste durante a navegação na aba, sem poluir entre sessões).
-  - Retorna o objeto consolidado dos UTMs presentes.
+3. **Encoding dos placeholders Meta**
+   - `URLSearchParams` transforma `{{campaign.name}}` em `%7B%7Bcampaign.name%7D%7D`. Isso pode prejudicar placeholders dinâmicos em alguns ambientes de ads/forms. Vou preservar UTMs reais quando existirem e revisar o fallback para não atrapalhar tráfego orgânico ou pago.
 
-### 2. Helper para montar a URL do Yayforms
-- Criar `src/lib/waitlist-url.ts` exportando `buildWaitlistUrl(utms)`:
-  - Base: `https://posrtconsultoria.yayforms.link/NdJRJLr`
-  - Para cada UTM presente na URL atual/sessionStorage, substitui o valor.
-  - Para os que **não** vieram (ex.: visita orgânica), mantém o placeholder do Meta `{{...}}` para não quebrar o tracking de anúncios pagos. Isso garante: tráfego pago do Meta → Meta substitui; tráfego com UTM próprio → propagamos; tráfego direto → placeholders permanecem (Yayforms simplesmente ignora).
-  - Alternativa que prefiro: se vier UTM próprio, usa o valor; se não vier, remove o parâmetro (mais limpo). **Decisão: manter placeholder do Meta como fallback** porque o link original já foi pensado para Meta Ads.
+Plano de correção:
 
-### 3. Aplicar nos CTAs
-- `src/components/TopNav.tsx`: trocar a constante `WAITLIST_URL` por `buildWaitlistUrl(utms)` calculado via hook (CTA desktop + CTA do menu mobile).
-- `src/routes/index.tsx`: localizar todos os botões/links "Fazer minha Pré-Inscrição" (hero, seção de pré-inscrição, qualquer outro) e usar a mesma URL dinâmica.
-
-### 4. Comportamento esperado
-- Usuário acessa `seusite.com/?utm_source=instagram&utm_campaign=lancamento` → clica no CTA → vai para `...yayforms.link/NdJRJLr?utm_source=instagram&utm_campaign=lancamento&utm_medium={{adset.name}}&...`
-- Usuário navega entre âncoras (`#modulos`, `#certificacao`) → UTMs continuam preservados (sessionStorage).
-- Usuário vem de anúncio do Meta → placeholders `{{...}}` são substituídos pelo Meta normalmente.
-
-## Pontos para confirmar antes de implementar
-
-1. **Fallback quando não há UTM próprio**: manter os placeholders `{{site_source_name}}` etc. (preserva tracking do Meta Ads) ou remover os parâmetros vazios (URL mais limpa)?
-2. Quer que eu também capture `fbclid`/`gclid` e envie ao Yayforms (ex.: como `utm_term` ou parâmetro extra), ou só os 5 UTMs padrão?
+- Criar uma função central que lê UTMs diretamente de `window.location.search` + `sessionStorage` sempre que o CTA for clicado.
+- Atualizar os botões “Fazer minha Pré-Inscrição” para recalcular o `href` no momento do clique, não apenas no render inicial.
+- Manter persistência em `sessionStorage` para que UTMs não se percam em navegações internas/âncoras.
+- Garantir que todos os CTAs usem a mesma URL gerada para o Yayforms.
+- Validar com uma URL de teste contendo `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `fbclid`/`gclid` e confirmar que a URL final do Yayforms carrega esses parâmetros.
