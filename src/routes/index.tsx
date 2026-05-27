@@ -1083,7 +1083,7 @@ function Index() {
                     style={{ backgroundColor: COLORS.bgAlt, border: `2px solid ${COLORS.cyan}` }}
                   >
                     {t.photo && (
-                      <img src={t.photo} alt={t.name} className="h-full w-full object-cover" />
+                      <img src={t.photo} alt={`Depoimento da aluna ${t.name}`} className="h-full w-full object-cover" />
                     )}
                   </div>
                   <div className="mt-4 text-center text-base" style={{ fontWeight: 700 }}>
