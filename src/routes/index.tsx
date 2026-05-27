@@ -687,7 +687,6 @@ function TeachersCarousel() {
           ))}
         </div>
       </div>
-      </div>
     </div>
   );
 }
