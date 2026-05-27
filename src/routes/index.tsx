@@ -579,6 +579,7 @@ const TEACHERS: Teacher[] = [
 function TeachersCarousel() {
   const [perPage, setPerPage] = useState(4);
   const [index, setIndex] = useState(0);
+  const [animate, setAnimate] = useState(true);
   const touchStart = useRef<number | null>(null);
 
   useEffect(() => {
@@ -591,19 +592,34 @@ function TeachersCarousel() {
     return () => window.removeEventListener("resize", update);
   }, []);
 
-  const maxIndex = Math.max(0, TEACHERS.length - perPage);
+  const total = TEACHERS.length;
+  const items = [...TEACHERS, ...TEACHERS];
 
   useEffect(() => {
-    setIndex((i) => Math.min(i, maxIndex));
-  }, [maxIndex]);
-
-  useEffect(() => {
-    if (maxIndex === 0) return;
     const id = setInterval(() => {
-      setIndex((i) => (i >= maxIndex ? 0 : i + 1));
+      setAnimate(true);
+      setIndex((i) => i + 1);
     }, 3000);
     return () => clearInterval(id);
-  }, [maxIndex]);
+  }, []);
+
+  // Seamless reset: when we've scrolled past the first copy, snap back to 0 without animation
+  const onTransitionEnd = () => {
+    if (index >= total) {
+      setAnimate(false);
+      setIndex(0);
+    }
+  };
+
+  useEffect(() => {
+    if (!animate) {
+      // Re-enable animation on next frame after the snap
+      const id = requestAnimationFrame(() => {
+        requestAnimationFrame(() => setAnimate(true));
+      });
+      return () => cancelAnimationFrame(id);
+    }
+  }, [animate]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     touchStart.current = e.touches[0].clientX;
@@ -612,13 +628,16 @@ function TeachersCarousel() {
     if (touchStart.current == null) return;
     const dx = e.changedTouches[0].clientX - touchStart.current;
     if (Math.abs(dx) > 40) {
+      setAnimate(true);
       setIndex((i) => {
         const next = dx < 0 ? i + 1 : i - 1;
-        return Math.max(0, Math.min(maxIndex, next));
+        return Math.max(0, next);
       });
     }
     touchStart.current = null;
   };
+
+  const activeBullet = ((index % total) + total) % total;
 
   return (
     <div data-reveal>
@@ -628,10 +647,11 @@ function TeachersCarousel() {
         onTouchEnd={onTouchEnd}
       >
         <div
-          className="flex transition-transform duration-500 ease-out"
+          className={`flex ${animate ? "transition-transform duration-500 ease-out" : ""}`}
           style={{ transform: `translateX(-${index * (100 / perPage)}%)` }}
+          onTransitionEnd={onTransitionEnd}
         >
-          {TEACHERS.map((t, i) => (
+          {items.map((t, i) => (
             <div
               key={i}
               className="shrink-0 px-3"
@@ -668,14 +688,17 @@ function TeachersCarousel() {
         </div>
       </div>
       <div className="mt-6 flex justify-center gap-2">
-        {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+        {Array.from({ length: total }).map((_, i) => (
           <button
             key={i}
             type="button"
-            onClick={() => setIndex(i)}
+            onClick={() => {
+              setAnimate(true);
+              setIndex(i);
+            }}
             aria-label={`Ir para slide ${i + 1}`}
             className="h-2.5 w-2.5 rounded-full transition-colors"
-            style={{ backgroundColor: index === i ? COLORS.lime : COLORS.bgAlt }}
+            style={{ backgroundColor: activeBullet === i ? COLORS.lime : COLORS.bgAlt }}
           />
         ))}
       </div>
