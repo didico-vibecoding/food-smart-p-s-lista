@@ -34,24 +34,63 @@ import newsPegn from "@/assets/news-pegn.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Pós-Graduação em RT e Consultoria de Alimentos — Food Smart" },
+      { title: "Pós-Graduação em RT e Consultoria de Alimentos | Food Smart" },
       {
         name: "description",
         content:
-          "Lista de espera para a Pós-Graduação em RT e Consultoria de Alimentos da Food Smart. Reconhecida pelo MEC.",
+          "Pós-Graduação da Food Smart em Responsabilidade Técnica e Consultoria de Alimentos. Reconhecida pelo MEC, com formação prática para nutricionistas. Faça sua pré-inscrição.",
       },
-      { property: "og:title", content: "Pós-Graduação em RT e Consultoria de Alimentos — Food Smart" },
+      {
+        name: "keywords",
+        content:
+          "pós-graduação nutrição, responsabilidade técnica alimentos, consultoria de alimentos, RT nutricionista, food safety, pós EAD nutrição, Food Smart",
+      },
+      { property: "og:title", content: "Pós-Graduação em RT e Consultoria de Alimentos | Food Smart" },
       {
         property: "og:description",
-        content: "Entre para a lista de espera da Pós-Graduação reconhecida pelo MEC da Food Smart.",
+        content:
+          "Formação prática reconhecida pelo MEC para nutricionistas que querem atuar como RT e consultores no setor de alimentos.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { name: "twitter:title", content: "Pós-Graduação em RT e Consultoria de Alimentos | Food Smart" },
+      {
+        name: "twitter:description",
+        content:
+          "Formação prática reconhecida pelo MEC para nutricionistas atuarem como RT e consultores.",
       },
     ],
     links: [
+      { rel: "canonical", href: "/" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Course",
+          name: "Pós-Graduação em RT e Consultoria de Alimentos",
+          description:
+            "Pós-Graduação reconhecida pelo MEC com formação prática para nutricionistas atuarem como Responsáveis Técnicos e consultores no setor de alimentos.",
+          inLanguage: "pt-BR",
+          educationalCredentialAwarded: "Especialização (Pós-Graduação Lato Sensu)",
+          provider: {
+            "@type": "EducationalOrganization",
+            name: "Food Smart",
+            sameAs: "https://foodsmart.com.br",
+          },
+          hasCourseInstance: {
+            "@type": "CourseInstance",
+            courseMode: "online",
+            inLanguage: "pt-BR",
+          },
+        }),
       },
     ],
   }),
