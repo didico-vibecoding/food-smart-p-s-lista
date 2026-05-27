@@ -104,6 +104,25 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '203903824797247');
 fbq('track', 'PageView');`,
       },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Food Smart",
+          url: "https://pos-rt-consultoria.lovable.app",
+          sameAs: ["https://foodsmart.com.br"],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Food Smart",
+          url: "https://pos-rt-consultoria.lovable.app",
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
